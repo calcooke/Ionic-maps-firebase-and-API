@@ -21,7 +21,7 @@ export class GoogleMapComponent {
   
   
   constructor(public http: HttpClient) {
-    console.log('Generating map');
+    
   }
 
   
@@ -49,14 +49,14 @@ export class GoogleMapComponent {
     let data: Observable<any> = this.http.get(url);
     data.subscribe(result => {
       this.monuments = result;
-        console.log('Monument data retrievedin google ts file');
+        console.log('Monument data retrieved in google ts file');
         console.log(result);
     });
   }
 
   initMap(){
 
-    console.log('Setting coords');
+    console.log('Setting map center coords');
     let coords = new google.maps.LatLng(53.13639186, -9.280849169);
     
     console.log('Setting map options');
@@ -70,11 +70,13 @@ export class GoogleMapComponent {
 
     console.log('Assigning map options to map');  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    console.log('Map set up and assigned');  
+    console.log('Map set up');  
     this.addMarker(this.monuments);
   }
 
   addMarker(monuments){
+
+    console.log('Populating map with monuments');
 
     for(var i=0; i<monuments.length; i++){
       //console.log(monuments[i]["LATITUDE"]);
@@ -87,14 +89,6 @@ export class GoogleMapComponent {
     };
 
   }
-  // addMarker(){
-
-  //     let coords = new google.maps.LatLng(53.13639186, -9.280849169);
-  //     this.testMarker = new google.maps.Marker({
-  //       position: coords,
-  //       map : this.map,
-  //       title: 'cool marker'
-  //     });
-  //   };
+  
 
 }
