@@ -12,8 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
-//import {Observable} from 'rxjs';
-//import 'rxjs-compat';
+
 
 
 var config = {
