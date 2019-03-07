@@ -23,7 +23,10 @@ export class GoogleMapComponent {
 
   ngOnInit(){
     console.log('Initializing map');
-    this.initMap();
+    setTimeout(() => {
+       this.initMap();
+    }, 1000);
+   
     
   }
 
@@ -44,6 +47,17 @@ export class GoogleMapComponent {
     console.log('Assigning map options to map');  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     console.log('Map set up and assigned');  
+    this.addMarker();
   }
+
+  addMarker(){
+
+      let coords = new google.maps.LatLng(53.13639186, -9.280849169);
+      this.testMarker = new google.maps.Marker({
+        position: coords,
+        map : this.map,
+        title: 'cool marker'
+      });
+    };
 
 }
