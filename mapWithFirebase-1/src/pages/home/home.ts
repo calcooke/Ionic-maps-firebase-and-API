@@ -18,7 +18,7 @@ export class HomePage {
 
   getDataFromFirebase(){
 
-    console.log('Begining retrieve from firebase');
+    console.log('Begining firebase retrieve');
     this.afd.list('/Heros/').valueChanges().subscribe(
       data => {
         console.log(JSON.stringify(data));

@@ -6,9 +6,10 @@ import { Observable } from 'rxjs';
 )
 export class archDataService{
 
-    public monument:any;
+    public monuments:any[];
 
     constructor(public http: HttpClient) {
+        console.log("Archeology database service created")
         this.getData();
     }
 
@@ -18,7 +19,8 @@ export class archDataService{
         let url = 'assets/archData.json'; 
         let data: Observable<any> = this.http.get(url);
         data.subscribe(result => {
-          this.monument = result;
+          this.monuments = result;
+            console.log('Monument data retrieved');
             console.log(result);
         });
       }

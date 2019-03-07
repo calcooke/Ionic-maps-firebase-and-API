@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import {archDataService} from '../../archData.service';
+//import {archDataService} from '../../archData.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 declare var google: any;
@@ -18,7 +20,7 @@ export class GoogleMapComponent {
   google:any;
   
   
-  constructor(private archService:archDataService) {
+  constructor(public http: HttpClient) {
     console.log('Generating map');
   }
 
@@ -29,8 +31,27 @@ export class GoogleMapComponent {
     setTimeout(() => {
        this.initMap();
     }, 1000);
-   
+
+    //this.retrieveMonuments();
+    this.getJSONData();
     
+  }
+
+  retrieveMonuments(){
+
+    //console.log(this.archService.monuments);
+
+  }
+
+  getJSONData(){
+     
+    let url = 'assets/archData.json'; 
+    let data: Observable<any> = this.http.get(url);
+    data.subscribe(result => {
+      this.monuments = result;
+        console.log('Monument data retrievedin google ts file');
+        console.log(result);
+    });
   }
 
   initMap(){
