@@ -71,17 +71,30 @@ export class GoogleMapComponent {
     console.log('Assigning map options to map');  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     console.log('Map set up and assigned');  
-    this.addMarker();
+    this.addMarker(this.monuments);
   }
 
-  addMarker(){
+  addMarker(monuments){
 
-      let coords = new google.maps.LatLng(53.13639186, -9.280849169);
+    for(var i=0; i<monuments.length; i++){
+      //console.log(monuments[i]["LATITUDE"]);
+      let coords = new google.maps.LatLng(monuments[i]["LATITUDE"], monuments[i]["LONGITUDE"]);
       this.testMarker = new google.maps.Marker({
         position: coords,
         map : this.map,
-        title: 'cool marker'
+        title: monuments[i]["CLASSDESC"]
       });
     };
+
+  }
+  // addMarker(){
+
+  //     let coords = new google.maps.LatLng(53.13639186, -9.280849169);
+  //     this.testMarker = new google.maps.Marker({
+  //       position: coords,
+  //       map : this.map,
+  //       title: 'cool marker'
+  //     });
+  //   };
 
 }
