@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import {archDataService} from '../../archData.service';
 
 
 declare var google: any;
@@ -17,9 +18,11 @@ export class GoogleMapComponent {
   google:any;
   
   
-  constructor() {
+  constructor(private archService:archDataService) {
     console.log('Generating map');
   }
+
+  
 
   ngOnInit(){
     console.log('Initializing map');

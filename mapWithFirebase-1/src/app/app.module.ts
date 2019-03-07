@@ -13,6 +13,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 
+import {archDataService} from '../archData.service';
+
 
 
 var config = {
@@ -48,6 +50,7 @@ var config = {
   providers: [
     StatusBar,
     SplashScreen,
+    archDataService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
