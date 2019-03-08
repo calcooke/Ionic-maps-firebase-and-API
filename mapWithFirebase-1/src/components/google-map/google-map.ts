@@ -91,33 +91,25 @@ export class GoogleMapComponent {
 
     for(var i=0; i<monuments.length; i++){
       
+      let monumentTitle =  monuments[i]["CLASSDESC"];
       let coords = new google.maps.LatLng(monuments[i]["LATITUDE"], monuments[i]["LONGITUDE"]);
       this.monumentMarker = new google.maps.Marker({
         position: coords,
         map : this.map,
         title: monuments[i]["CLASSDESC"]
-      });
+      }).addListener('click', () =>{
 
-      // this.monumentMarker.addListener('click', function(){
-         
-      //   this.monumentDetail();
-          
-      // });
+        this.monumentDetail(monumentTitle);
 
-      this.monumentMarker.addListener('click', () =>{
-
-        this.monumentDetail();
-
-      })
+      });;
 
     };
 
   }
 
-  monumentDetail(){
-    console.log('Function called');
+  monumentDetail(title){
+    console.log(title);
   }
-  
   
 
 }
