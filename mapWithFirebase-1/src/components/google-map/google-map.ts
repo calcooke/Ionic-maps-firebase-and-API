@@ -3,7 +3,6 @@ import {archDataService} from '../../archData.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-
 declare var google: any;
 
 @Component({
@@ -16,9 +15,6 @@ export class GoogleMapComponent {
   public monumentType;
   public clickedOn:boolean = false;
   
-  
-
-  
 
   @ViewChild("map") mapElement;
   map: any;
@@ -26,12 +22,9 @@ export class GoogleMapComponent {
   google:any;
   
   
-  constructor(public http: HttpClient, public archService:archDataService) {
-    
-  }
+  constructor(public http: HttpClient, public archService:archDataService) {}
 
   
-
   ngOnInit(){
     console.log('Initializing map');
     setTimeout(() => {
@@ -44,18 +37,12 @@ export class GoogleMapComponent {
   }
 
  
-
   retrieveMonuments(){
-
-    console.log('WORKED');
-    
-    console.log('WORKED');
 
   }
 
   getJSONData(){
-    
-     
+      
     let url = 'assets/archData.json'; 
     let data: Observable<any> = this.http.get(url);
     data.subscribe(result => {
@@ -75,7 +62,8 @@ export class GoogleMapComponent {
 
       center: coords,
       zoom: 14,
-      mapTypeId: google.maps.MapTypeId.TERRAIN
+      mapTypeId: google.maps.MapTypeId.TERRAIN,
+      disableDefaultUI: true
 
     }
 
@@ -111,5 +99,4 @@ export class GoogleMapComponent {
     console.log(title);
   }
   
-
 }
