@@ -23,6 +23,10 @@ export class archDataService{
             console.log('Monument data retrieved in archService');
             console.log(this.monuments);
         });
-      }
+  }
+
+  sayHello(){
+    console.log('hello');
+  }
 
 }

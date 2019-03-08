@@ -13,6 +13,11 @@ declare var google: any;
 export class GoogleMapComponent {
 
   public monuments:any;
+  public monumentType;
+  public clickedOn:boolean = false;
+  
+  
+
   
 
   @ViewChild("map") mapElement;
@@ -37,6 +42,8 @@ export class GoogleMapComponent {
     this.getJSONData();
     
   }
+
+ 
 
   retrieveMonuments(){
 
@@ -83,25 +90,33 @@ export class GoogleMapComponent {
     console.log('Populating map with');
 
     for(var i=0; i<monuments.length; i++){
-      //console.log(monuments[i]["LATITUDE"]);
+      
       let coords = new google.maps.LatLng(monuments[i]["LATITUDE"], monuments[i]["LONGITUDE"]);
       this.monumentMarker = new google.maps.Marker({
         position: coords,
         map : this.map,
         title: monuments[i]["CLASSDESC"]
-      }).addListener('click', function(){
-        console.log(this.title);
       });
 
       // this.monumentMarker.addListener('click', function(){
-      //     console.log(this.monumentMarker);
-      //     //console.log(this.monumentMarker.title);
-      //   });
+         
+      //   this.monumentDetail();
+          
+      // });
+
+      this.monumentMarker.addListener('click', () =>{
+
+        this.monumentDetail();
+
+      })
 
     };
 
   }
 
+  monumentDetail(){
+    console.log('Function called');
+  }
   
   
 
