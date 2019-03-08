@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-//import {archDataService} from '../../archData.service';
+import {archDataService} from '../../archData.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,7 +12,8 @@ declare var google: any;
 })
 export class GoogleMapComponent {
 
-  public monuments:any[];
+  public monuments:any;
+  
 
   @ViewChild("map") mapElement;
   map: any;
@@ -20,7 +21,7 @@ export class GoogleMapComponent {
   google:any;
   
   
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public archService:archDataService) {
     
   }
 
@@ -39,18 +40,21 @@ export class GoogleMapComponent {
 
   retrieveMonuments(){
 
-    //console.log(this.archService.monuments);
+    console.log('WORKED');
+    
+    console.log('WORKED');
 
   }
 
   getJSONData(){
+    
      
     let url = 'assets/archData.json'; 
     let data: Observable<any> = this.http.get(url);
     data.subscribe(result => {
       this.monuments = result;
         console.log('Monument data retrieved in google ts file');
-        console.log(result);
+        console.log(this.monuments);
     });
   }
 
@@ -76,7 +80,7 @@ export class GoogleMapComponent {
 
   addMarker(monuments){
 
-    console.log('Populating map with monuments');
+    console.log('Populating map with');
 
     for(var i=0; i<monuments.length; i++){
       //console.log(monuments[i]["LATITUDE"]);
