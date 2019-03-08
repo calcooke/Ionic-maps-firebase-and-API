@@ -17,7 +17,7 @@ export class GoogleMapComponent {
 
   @ViewChild("map") mapElement;
   map: any;
-  testMarker: any;
+  monumentMarker: any;
   google:any;
   
   
@@ -85,14 +85,22 @@ export class GoogleMapComponent {
     for(var i=0; i<monuments.length; i++){
       //console.log(monuments[i]["LATITUDE"]);
       let coords = new google.maps.LatLng(monuments[i]["LATITUDE"], monuments[i]["LONGITUDE"]);
-      this.testMarker = new google.maps.Marker({
+      this.monumentMarker = new google.maps.Marker({
         position: coords,
         map : this.map,
         title: monuments[i]["CLASSDESC"]
       });
+
+      this.monumentMarker.addListener('click', function(){
+          console.log('Marker is clicked');
+          //console.log(this.monumentMarker.title);
+        });
+
     };
 
   }
+
+  
   
 
 }
