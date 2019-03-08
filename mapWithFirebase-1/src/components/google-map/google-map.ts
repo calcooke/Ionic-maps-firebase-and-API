@@ -89,12 +89,14 @@ export class GoogleMapComponent {
         position: coords,
         map : this.map,
         title: monuments[i]["CLASSDESC"]
+      }).addListener('click', function(){
+        console.log(this.title);
       });
 
-      this.monumentMarker.addListener('click', function(){
-          console.log('Marker is clicked');
-          //console.log(this.monumentMarker.title);
-        });
+      // this.monumentMarker.addListener('click', function(){
+      //     console.log(this.monumentMarker);
+      //     //console.log(this.monumentMarker.title);
+      //   });
 
     };
 
