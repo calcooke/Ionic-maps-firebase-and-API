@@ -33,33 +33,12 @@ export class GoogleMapComponent {
     }, 1000);
 
     this.retrieveMonuments();
-    //this.getJSONData();
       
   }
 
  
   retrieveMonuments(){
   
-    // console.log('archService data WAS');
-    // console.log(this.archService.monuments);
-
-    // this.archService.getData().subscribe(data => {
-    //   console.log(data);
-    //   console.log('Subscribe complete');
-    // });
-
-
-    //Data is just not assigned in time. Everything works on the archService side, but not assigned properly
-    //here as it needs a timeout or subscribe
-    // this.monuments = this.archService.getData();
-    // console.log('Arch service returned data and is...');
-    // console.log(this.monuments);
-
-    // console.log('archService data IS NOW');
-    // setTimeout(() => {
-    //   console.log(this.archService.monuments);
-    // }, 1000);
-
     this.archService.getData();
     setTimeout(() => {
       console.log(this.archService.monuments);
@@ -68,16 +47,6 @@ export class GoogleMapComponent {
    
   }
 
-  getJSONData(){
-      
-    let url = 'assets/archData.json'; 
-    let data: Observable<any> = this.http.get(url);
-    data.subscribe(result => {
-      this.monuments = result;
-        //console.log('Monument data retrieved in google ts file');
-        //console.log(this.monuments);
-    });
-  }
 
   initMap(){
 
@@ -96,13 +65,11 @@ export class GoogleMapComponent {
 
     //console.log('Assigning map options to map');  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    //console.log('Map set up');  
+    //console.log('Populating map with markers');  
     this.addMarker(this.monuments);
   }
 
   addMarker(monuments){
-
-    //console.log('Populating map with');
 
     for(var i=0; i<monuments.length; i++){
       
