@@ -11,13 +11,12 @@ export class archDataService{
 
     constructor(public http: HttpClient) {
         //console.log("Archeology database service created")
-       
     }
 
     getData():Observable<any>{
  
         let url = 'assets/archData.json'; 
-        
+
         let data: Observable<any> = this.http.get(url);
         data.subscribe(result => {
           this.monuments = result;

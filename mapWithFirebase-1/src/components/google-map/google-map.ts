@@ -44,6 +44,12 @@ export class GoogleMapComponent {
       console.log(this.archService.monuments);
       this.monuments = this.archService.monuments;
    }, 50);
+
+  //  let data: Observable<any> = this.archService.getData();
+  //       data.subscribe(result => {
+  //         this.monuments = result;
+  //       });
+
    
   }
 
@@ -59,7 +65,7 @@ export class GoogleMapComponent {
       center: coords,
       zoom: 14,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
-      //disableDefaultUI: true
+      disableDefaultUI: true
 
     }
 
