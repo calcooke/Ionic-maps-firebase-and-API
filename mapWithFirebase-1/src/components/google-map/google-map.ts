@@ -1,7 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import {archDataService} from '../../archData.service';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
+import { NavController } from 'ionic-angular';
+import {InformationCardComponent} from '../information-card/information-card';
+
 
 declare var google: any;
 
@@ -20,6 +24,8 @@ export class GoogleMapComponent {
   map: any;
   monumentMarker: any;
   google:any;
+  cardTitle: string;
+  
   
   
   constructor(public http: HttpClient, public archService:archDataService) {}
@@ -27,13 +33,24 @@ export class GoogleMapComponent {
   
   ngOnInit(){
     
+    this.cardTitle = 'New card text';
     //console.log('Initializing map');
     setTimeout(() => {
        this.initMap();
     }, 1000);
 
     this.retrieveMonuments();
+
+    //this.pushItemTo(this.cardTitle);
       
+  }
+
+  pushItemTo(info){
+
+    // this.navParams.push(InformationCardComponent, {
+    //   text: info
+    // });
+
   }
 
  
@@ -53,6 +70,10 @@ export class GoogleMapComponent {
    
   }
 
+
+  ionViewDidLoad(){
+    //Will this sort the google map issues?
+  }
 
   initMap(){
 
@@ -97,6 +118,7 @@ export class GoogleMapComponent {
 
   monumentDetail(title){
     console.log(title);
+    this.clickedOn = true;
   }
   
 }

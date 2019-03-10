@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import {GoogleMapComponent} from '../components/google-map/google-map';
+import {InformationCardComponent} from '../components/information-card/information-card';
 
 
 import { MyApp } from './app.component';
@@ -31,7 +32,8 @@ var config = {
   declarations: [
     MyApp,
     HomePage,
-    GoogleMapComponent
+    GoogleMapComponent,
+    InformationCardComponent
     
   ],
   imports: [
@@ -45,13 +47,14 @@ var config = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     archDataService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+  ],
+  exports: [ ]
 })
 export class AppModule {}
