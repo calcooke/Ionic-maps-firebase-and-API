@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -6,27 +6,27 @@ import { Observable } from 'rxjs';
 )
 export class archDataService{
 
-    public monuments:any;
+    public monuments:any = "MONUMENTS BEFORE RETRIEVAL";
 
     constructor(public http: HttpClient) {
-        console.log("Archeology database service created")
+        //console.log("Archeology database service created")
         this.getData();
     }
 
     getData(){
-
-        
+ 
         let url = 'assets/archData.json'; 
         let data: Observable<any> = this.http.get(url);
         data.subscribe(result => {
           this.monuments = result;
-            console.log('Monument data retrieved in archService');
-            console.log(this.monuments);
+          
+            //console.log(this.monuments); 
+            //console.log('MONUMENTS AFTER RETRIEVAL');
         });
   }
 
   sayHello(){
-    console.log('hello');
+    console.log('CALLING A FUNCTION IN ARCH SERVICE');
   }
 
 }

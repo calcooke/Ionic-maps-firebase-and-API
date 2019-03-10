@@ -31,14 +31,21 @@ export class GoogleMapComponent {
        this.initMap();
     }, 1000);
 
-    //this.retrieveMonuments();
+    this.retrieveMonuments();
     this.getJSONData();
-    
+      
   }
 
  
   retrieveMonuments(){
-
+    //this.archService.sayHello();
+    console.log('archService data is');
+    console.log(this.archService.monuments);
+    this.archService.getData();
+    setTimeout(() => {
+      console.log(this.archService.monuments);
+   }, 1000);
+    
   }
 
   getJSONData(){
@@ -47,35 +54,35 @@ export class GoogleMapComponent {
     let data: Observable<any> = this.http.get(url);
     data.subscribe(result => {
       this.monuments = result;
-        console.log('Monument data retrieved in google ts file');
-        console.log(this.monuments);
+        //console.log('Monument data retrieved in google ts file');
+        //console.log(this.monuments);
     });
   }
 
   initMap(){
 
-    console.log('Setting map center coords');
+    //console.log('Setting map center coords');
     let coords = new google.maps.LatLng(53.13639186, -9.280849169);
     
-    console.log('Setting map options');
+    //console.log('Setting map options');
     let mapOptions: google.maps.MapOptions = {
 
       center: coords,
       zoom: 14,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
-      disableDefaultUI: true
+      //disableDefaultUI: true
 
     }
 
-    console.log('Assigning map options to map');  
+    //console.log('Assigning map options to map');  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    console.log('Map set up');  
+    //console.log('Map set up');  
     this.addMarker(this.monuments);
   }
 
   addMarker(monuments){
 
-    console.log('Populating map with');
+    //console.log('Populating map with');
 
     for(var i=0; i<monuments.length; i++){
       
