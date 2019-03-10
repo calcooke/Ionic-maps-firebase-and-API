@@ -18,14 +18,14 @@ export class HomePage {
 
   getDataFromFirebase(){
 
-    console.log('Begining firebase retrieve');
+    //console.log('Begining firebase retrieve');
     this.afd.list('/Heros/').valueChanges().subscribe(
       data => {
         console.log(JSON.stringify(data));
         //this.items = data;
       }
     )
-    console.log('Retrieved data from firebase');
+    //console.log('Retrieved data from firebase');
 
   }
 

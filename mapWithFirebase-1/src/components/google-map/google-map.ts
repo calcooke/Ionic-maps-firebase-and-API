@@ -11,7 +11,7 @@ declare var google: any;
 })
 export class GoogleMapComponent {
 
-  public monuments:any;
+  public monuments:any = 'Monuments still unassigned';
   public monumentType;
   public clickedOn:boolean = false;
   
@@ -26,26 +26,46 @@ export class GoogleMapComponent {
 
   
   ngOnInit(){
-    console.log('Initializing map');
+    
+    //console.log('Initializing map');
     setTimeout(() => {
        this.initMap();
     }, 1000);
 
     this.retrieveMonuments();
-    this.getJSONData();
+    //this.getJSONData();
       
   }
 
  
   retrieveMonuments(){
-    //this.archService.sayHello();
-    console.log('archService data is');
-    console.log(this.archService.monuments);
+  
+    // console.log('archService data WAS');
+    // console.log(this.archService.monuments);
+
+    // this.archService.getData().subscribe(data => {
+    //   console.log(data);
+    //   console.log('Subscribe complete');
+    // });
+
+
+    //Data is just not assigned in time. Everything works on the archService side, but not assigned properly
+    //here as it needs a timeout or subscribe
+    // this.monuments = this.archService.getData();
+    // console.log('Arch service returned data and is...');
+    // console.log(this.monuments);
+
+    // console.log('archService data IS NOW');
+    // setTimeout(() => {
+    //   console.log(this.archService.monuments);
+    // }, 1000);
+
     this.archService.getData();
     setTimeout(() => {
       console.log(this.archService.monuments);
-   }, 1000);
-    
+      this.monuments = this.archService.monuments;
+   }, 50);
+   
   }
 
   getJSONData(){
