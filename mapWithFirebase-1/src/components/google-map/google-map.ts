@@ -3,7 +3,7 @@ import {archDataService} from '../../archData.service';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { NavController } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 import {InformationCardComponent} from '../information-card/information-card';
 import {ModalController} from 'ionic-angular';
 
@@ -57,6 +57,15 @@ export class GoogleMapComponent {
   public openModal(){
 
     console.log('Modal open');
+    var data = {message: 'hello world'}; 
+    var modalPage = this.modalCtrl.create('ModalPage', data);  
+    console.log('Presenting modal');
+    modalPage.present();
+
+  }
+
+  public closeModal(){
+
 
   }
 
