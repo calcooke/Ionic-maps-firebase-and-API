@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NavController } from 'ionic-angular';
 import {InformationCardComponent} from '../information-card/information-card';
+import {ModalController} from 'ionic-angular';
 
 
 declare var google: any;
@@ -28,7 +29,7 @@ export class GoogleMapComponent {
   
   
   
-  constructor(public http: HttpClient, public archService:archDataService) {}
+  constructor(public http: HttpClient, public archService:archDataService, public modalCtrl: ModalController) {}
 
   
   ngOnInit(){
@@ -50,6 +51,12 @@ export class GoogleMapComponent {
     // this.navParams.push(InformationCardComponent, {
     //   text: info
     // });
+
+  }
+
+  public openModal(){
+
+    console.log('Modal open');
 
   }
 
@@ -109,6 +116,7 @@ export class GoogleMapComponent {
       }).addListener('click', () =>{
 
         this.monumentDetail(monumentTitle);
+        this.openModal();
 
       });;
 
