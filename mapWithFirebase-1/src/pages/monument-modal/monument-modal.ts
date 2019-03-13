@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ViewController} from 'ionic-angular';
 
 /**
  * Generated class for the MonumentModalPage page.
@@ -15,11 +16,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MonumentModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 
+  monumentTitle: any;
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MonumentModalPage');
+    //console.log('ionViewDidLoad ModalPage');
+    console.log(this.navParams.get('message'));
+    this.monumentTitle = this.navParams.get('message');
+  }
+
+  public closeModal(){
+
+    this.viewCtrl.dismiss();
+    console.log('Modal closed');
   }
 
 }

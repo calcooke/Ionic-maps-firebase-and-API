@@ -58,7 +58,7 @@ export class GoogleMapComponent {
 
     console.log('Modal open');
     var data = {message: monumenttitle}; 
-    var modalPage = this.modalCtrl.create('ModalPage', data);  
+    var modalPage = this.modalCtrl.create('MonumentModalPage', data);  
     console.log('Presenting modal');
     modalPage.present();
 
