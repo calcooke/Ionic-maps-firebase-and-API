@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import {GoogleMapComponent} from '../components/google-map/google-map';
-import {InformationCardComponent} from '../components/information-card/information-card';
+
 
 
 import { MyApp } from './app.component';
@@ -32,9 +32,7 @@ var config = {
   declarations: [
     MyApp,
     HomePage,
-    GoogleMapComponent,
-    InformationCardComponent
-    
+    GoogleMapComponent  
   ],
   imports: [
     HttpClientModule,

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { IonicPage } from 'ionic-angular';
-import {InformationCardComponent} from '../information-card/information-card';
+
 import {ModalController} from 'ionic-angular';
 
 
