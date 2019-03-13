@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { GoogleMapComponent } from './google-map/google-map';
-import { InformationCardComponent } from './information-card/information-card';
+
 @NgModule({
-	declarations: [GoogleMapComponent,
-    InformationCardComponent],
+	declarations: [GoogleMapComponent
+    ],
 	imports: [],
-	exports: [GoogleMapComponent,
-    InformationCardComponent]
+	exports: [GoogleMapComponent
+    ]
 })
 export class ComponentsModule {}
