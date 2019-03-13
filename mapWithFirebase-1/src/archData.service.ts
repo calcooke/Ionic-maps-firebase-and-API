@@ -18,11 +18,12 @@ export class archDataService{
         let url = 'assets/archData.json'; 
 
         let data: Observable<any> = this.http.get(url);
-        data.subscribe(result => {
-          this.monuments = result;
-        });
+        return data;
+      //   data.subscribe(result => {
+      //     this.monuments = result;
+      //   });
 
-      return this.monuments;
+      // return this.monuments;
   }
 
   sayHello(){

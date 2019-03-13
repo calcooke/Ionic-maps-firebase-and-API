@@ -4,6 +4,8 @@ import {AngularFireDatabase} from 'angularfire2/database';
 import {ModalController} from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 
+declare var google: any;
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'

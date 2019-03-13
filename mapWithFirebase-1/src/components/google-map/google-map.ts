@@ -39,6 +39,9 @@ export class GoogleMapComponent {
     setTimeout(() => {
        this.initMap();
     }, 1000);
+    //this.initMap();
+
+    
 
     this.retrieveMonuments();
 
@@ -56,32 +59,29 @@ export class GoogleMapComponent {
 
   public openModal(monumenttitle:any ){
 
-    console.log('Modal open');
     var data = {message: monumenttitle}; 
-    var modalPage = this.modalCtrl.create('MonumentModalPage', data);  
-    console.log('Presenting modal');
+    var modalPage = this.modalCtrl.create('MonumentModalPage', data); 
     modalPage.present();
 
   }
 
-  public closeModal(){
 
-
-  }
-
- 
   retrieveMonuments(){
   
-    this.archService.getData();
-    setTimeout(() => {
-      console.log(this.archService.monuments);
-      this.monuments = this.archService.monuments;
-   }, 50);
+  //   this.archService.getData();
+  //   setTimeout(() => {
+  //     console.log(this.archService.monuments);
+  //     this.monuments = this.archService.monuments;
+  //  }, 50);
 
   //  let data: Observable<any> = this.archService.getData();
   //       data.subscribe(result => {
   //         this.monuments = result;
   //       });
+
+      this.archService.getData().subscribe(result => {
+          this.monuments = result;
+      })
 
    
   }
@@ -89,6 +89,7 @@ export class GoogleMapComponent {
 
   ionViewDidLoad(){
     //Will this sort the google map issues?
+    //this.initMap();
   }
 
   initMap(){
@@ -102,8 +103,7 @@ export class GoogleMapComponent {
       center: coords,
       zoom: 14,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
-      disableDefaultUI: true,
-      
+      disableDefaultUI: true, 
 
     }
 
