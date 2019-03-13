@@ -19,9 +19,12 @@ export class ModalPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
   }
 
+  monumentTitle: any;
+
   ionViewDidLoad() {
     //console.log('ionViewDidLoad ModalPage');
     console.log(this.navParams.get('message'));
+    this.monumentTitle = this.navParams.get('message');
   }
 
   public closeModal(){

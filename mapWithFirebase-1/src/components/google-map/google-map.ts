@@ -54,10 +54,10 @@ export class GoogleMapComponent {
 
   }
 
-  public openModal(){
+  public openModal(monumenttitle:any ){
 
     console.log('Modal open');
-    var data = {message: 'hello world'}; 
+    var data = {message: monumenttitle}; 
     var modalPage = this.modalCtrl.create('ModalPage', data);  
     console.log('Presenting modal');
     modalPage.present();
@@ -102,7 +102,8 @@ export class GoogleMapComponent {
       center: coords,
       zoom: 14,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
-      disableDefaultUI: true
+      disableDefaultUI: true,
+      
 
     }
 
@@ -125,7 +126,7 @@ export class GoogleMapComponent {
       }).addListener('click', () =>{
 
         this.monumentDetail(monumentTitle);
-        this.openModal();
+        this.openModal(monumentTitle);
 
       });;
 
