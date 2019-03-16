@@ -38,24 +38,13 @@ export class GoogleMapComponent {
     //console.log('Initializing map');
     setTimeout(() => {
        this.initMap();
-    }, 1000);
+    }, 100);
     //this.initMap();
-
-    
-
+  
     this.retrieveMonuments();
-
-    //this.pushItemTo(this.cardTitle);
-      
+   
   }
 
-  pushItemTo(info){
-
-    // this.navParams.push(InformationCardComponent, {
-    //   text: info
-    // });
-
-  }
 
   public openModal(monumenttitle:any ){
 

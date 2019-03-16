@@ -13,7 +13,7 @@ declare var google: any;
 export class HomePage {
 
   //items;
-  userLocation: string = 'Unretrieved';
+  userLocation: any;
 
   constructor(public navCtrl: NavController, public afd: AngularFireDatabase, public modalCtrl: ModalController, private geolocation:Geolocation) {
 
@@ -50,7 +50,8 @@ export class HomePage {
     this.geolocation.getCurrentPosition().then((resp) => {
       // resp.coords.latitude
       // resp.coords.longitude
-      this.userLocation = 'Lat: ' + resp.coords.latitude + '<br/>' + ' Lng: ' + resp.coords.longitude;
+      console.log(resp);
+      this.userLocation = resp.coords.latitude;
      }).catch((error) => {
        console.log('Error getting location', error);
      });
