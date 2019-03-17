@@ -2,11 +2,20 @@ page-home {
     ::-webkit-scrollbar{
         display: none;
     }
+    
+
+    .item.item-trns {
+        border-color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0);
+        color: white; 
+        background-color: transparent;
+    }
 
     background: transparent !important;
+    background-color: transparent !important;;
 
-    --background: transparent;
---ion-color-base: transparent !important;
+    background: transparent !important;;
+
 
     background-color: rgba(0, 0, 0, 0);
 
@@ -14,6 +23,7 @@ page-home {
         font-size: 32px;
         padding: 5px;
         background-color: rgba(0, 0, 0, 0);
+        background-color: transparent;
         background: transparent !important;
         --background: transparent;
 --ion-color-base: transparent !important;
@@ -24,5 +34,15 @@ page-home {
         --background: transparent;
 --ion-color-base: transparent !important;
 background: transparent !important;
+background-color: transparent;
     }
 }
+
+.item-trns {
+	border-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);
+    color: white; 
+    background-color: transparent;
+}
+
+
