@@ -2,4 +2,27 @@ page-home {
     ::-webkit-scrollbar{
         display: none;
     }
+
+    background: transparent !important;
+
+    --background: transparent;
+--ion-color-base: transparent !important;
+
+    background-color: rgba(0, 0, 0, 0);
+
+    ion-icon {
+        font-size: 32px;
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0);
+        background: transparent !important;
+        --background: transparent;
+--ion-color-base: transparent !important;
+      }
+
+    ion-content{
+        background-color: rgba(0, 0, 0, 0);
+        --background: transparent;
+--ion-color-base: transparent !important;
+background: transparent !important;
+    }
 }
