@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {ModalController} from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {FilterMenuPage} from '../filter-menu/filter-menu'
 
 declare var google: any;
 
@@ -18,6 +19,14 @@ export class HomePage {
   constructor(public navCtrl: NavController, public afd: AngularFireDatabase, public modalCtrl: ModalController, private geolocation:Geolocation) {
 
     this.getDataFromFirebase();
+
+  }
+
+  public openFilter(){
+
+    console.log('working');
+
+    this.navCtrl.push(FilterMenuPage);
 
   }
 

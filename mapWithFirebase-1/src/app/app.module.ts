@@ -16,6 +16,8 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 
 import {archDataService} from '../archData.service';
+import {FilterMenuPage} from '../pages/filter-menu/filter-menu'
+import {SearchTabsComponent} from '../components/search-tabs/search-tabs'
 
 
 
@@ -33,7 +35,9 @@ var config = {
   declarations: [
     MyApp,
     HomePage,
-    GoogleMapComponent  
+    GoogleMapComponent,
+    FilterMenuPage,
+    SearchTabsComponent  
   ],
   imports: [
     HttpClientModule,
@@ -47,6 +51,7 @@ var config = {
   entryComponents: [
     MyApp,
     HomePage,
+    FilterMenuPage,
   ],
   providers: [
     StatusBar,
