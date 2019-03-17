@@ -19,6 +19,9 @@ import {archDataService} from '../archData.service';
 import {FilterMenuPage} from '../pages/filter-menu/filter-menu'
 import {SearchTabsComponent} from '../components/search-tabs/search-tabs'
 import {TypeFilterPage} from '../pages/type-filter/type-filter';
+import {LocationFilterPage} from '../pages/location-filter/location-filter';
+import {FavouriteFilterPage} from '../pages/favourite-filter/favourite-filter';
+import {ReviewedFilterPage} from '../pages/reviewed-filter/reviewed-filter';
 
 
 
@@ -39,7 +42,10 @@ var config = {
     GoogleMapComponent,
     FilterMenuPage,
     SearchTabsComponent,
-    TypeFilterPage  
+    TypeFilterPage,
+    LocationFilterPage,
+    FavouriteFilterPage,
+    ReviewedFilterPage  
   ],
   imports: [
     HttpClientModule,
@@ -54,7 +60,11 @@ var config = {
     MyApp,
     HomePage,
     FilterMenuPage,
-    TypeFilterPage
+    TypeFilterPage,
+    LocationFilterPage,
+    FavouriteFilterPage,
+    ReviewedFilterPage
+    
   ],
   providers: [
     StatusBar,
