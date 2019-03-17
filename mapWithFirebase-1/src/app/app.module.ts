@@ -18,6 +18,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {archDataService} from '../archData.service';
 import {FilterMenuPage} from '../pages/filter-menu/filter-menu'
 import {SearchTabsComponent} from '../components/search-tabs/search-tabs'
+import {TypeFilterPage} from '../pages/type-filter/type-filter';
 
 
 
@@ -37,7 +38,8 @@ var config = {
     HomePage,
     GoogleMapComponent,
     FilterMenuPage,
-    SearchTabsComponent  
+    SearchTabsComponent,
+    TypeFilterPage  
   ],
   imports: [
     HttpClientModule,
@@ -52,6 +54,7 @@ var config = {
     MyApp,
     HomePage,
     FilterMenuPage,
+    TypeFilterPage
   ],
   providers: [
     StatusBar,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the FilterMenuPage page.
+ * Generated class for the TypeFilterPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,20 +10,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-filter-menu',
-  templateUrl: 'filter-menu.html',
+  selector: 'page-type-filter',
+  templateUrl: 'type-filter.html',
 })
-export class FilterMenuPage {
+export class TypeFilterPage {
+
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FilterMenuPage');
+    console.log('ionViewDidLoad TypeFilterPage');
   }
-
-  // tab1Root = HomePage;
-  // tab2Root = AboutPage;
-  // tab3Root = ContactPage;
 
 }

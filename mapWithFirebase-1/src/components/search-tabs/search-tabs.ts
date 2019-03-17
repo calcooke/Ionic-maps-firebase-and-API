@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {TypeFilterPage} from '../../pages/type-filter/type-filter';
+
 
 /**
  * Generated class for the SearchTabsComponent component.
@@ -13,6 +15,8 @@ import { Component } from '@angular/core';
 export class SearchTabsComponent {
 
   text: string;
+
+  tab1Root = TypeFilterPage;
 
   constructor() {
     console.log('Hello SearchTabsComponent Component');
