@@ -10,6 +10,17 @@
 
 <ion-content padding>
 
-  <h2>Filter by type</h2>
+  <ion-item>
+    <ion-label>Type</ion-label>
+    <ionic-selectable #typeSelection
+      item-content
+      
+      [items]="users"
+      itemValueField="id"
+      itemTextField="name"
+      [canSearch]="true"
+    >
+    </ionic-selectable>
+  </ion-item>
 
 </ion-content>
