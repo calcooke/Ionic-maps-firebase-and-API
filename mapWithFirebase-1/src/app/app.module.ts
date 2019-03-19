@@ -22,6 +22,7 @@ import {TypeFilterPage} from '../pages/type-filter/type-filter';
 import {LocationFilterPage} from '../pages/location-filter/location-filter';
 import {FavouriteFilterPage} from '../pages/favourite-filter/favourite-filter';
 import {ReviewedFilterPage} from '../pages/reviewed-filter/reviewed-filter';
+import {IonicSelectableModule} from 'ionic-selectable';
 
 
 
@@ -53,7 +54,8 @@ var config = {
     AngularFireDatabaseModule,
     AngularFireModule,
     AngularFireModule.initializeApp(config),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicSelectableModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
