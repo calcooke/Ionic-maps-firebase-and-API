@@ -1,14 +1,14 @@
 
-<ion-header>
+<!-- <ion-header> -->
 
   <!-- <ion-navbar>
     <ion-title>typeFilter</ion-title>
   </ion-navbar> -->
 
-</ion-header>
+<!-- </ion-header> -->
 
 
-<ion-content padding>
+<!-- <ion-content padding>
 
   <ion-item>
     <ion-label>Type</ion-label>
@@ -22,5 +22,25 @@
     >
     </ionic-selectable>
   </ion-item>
+
+</ion-content> -->
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+
+    <ion-list>
+        <ion-item *ngFor="let item of items">
+            {{item.title}}
+        </ion-item>
+    </ion-list>
 
 </ion-content>

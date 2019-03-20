@@ -11,6 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
 
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
@@ -23,6 +24,7 @@ import {LocationFilterPage} from '../pages/location-filter/location-filter';
 import {FavouriteFilterPage} from '../pages/favourite-filter/favourite-filter';
 import {ReviewedFilterPage} from '../pages/reviewed-filter/reviewed-filter';
 import {IonicSelectableModule} from 'ionic-selectable';
+import { TypeListDataProvider } from '../providers/type-list-data/type-list-data';
 
 
 
@@ -55,7 +57,8 @@ var config = {
     AngularFireModule,
     AngularFireModule.initializeApp(config),
     IonicModule.forRoot(MyApp),
-    IonicSelectableModule
+    IonicSelectableModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -73,7 +76,8 @@ var config = {
     SplashScreen,
     archDataService,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    TypeListDataProvider
   ],
   exports: [ ]
 })
