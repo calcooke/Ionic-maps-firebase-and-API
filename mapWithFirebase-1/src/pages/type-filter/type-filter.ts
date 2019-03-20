@@ -4,12 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {IonicSelectableComponent} from 'ionic-selectable';
 import {TypeListDataProvider} from '../../providers/type-list-data/type-list-data';
 
-/**
- * Generated class for the TypeFilterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({

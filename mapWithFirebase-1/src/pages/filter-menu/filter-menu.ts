@@ -5,12 +5,6 @@ import {LocationFilterPage} from '../../pages/location-filter/location-filter';
 import {FavouriteFilterPage} from '../../pages/favourite-filter/favourite-filter';
 import {ReviewedFilterPage} from '../../pages/reviewed-filter/reviewed-filter';
 
-/**
- * Generated class for the FilterMenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -28,11 +22,7 @@ export class FilterMenuPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FilterMenuPage');
+    //console.log('ionViewDidLoad FilterMenuPage');
   }
-
-  // tab1Root = HomePage;
-  // tab2Root = AboutPage;
-  // tab3Root = ContactPage;
 
 }
