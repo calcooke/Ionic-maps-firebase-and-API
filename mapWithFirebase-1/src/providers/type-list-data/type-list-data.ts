@@ -31,8 +31,11 @@ export class TypeListDataProvider {
       console.log('Set filter triggering function in service');
 
         return this.items.filter((item) => {
+          console.log('Filter should have worked');
             return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         });     
+
+        //
 
     }
 
