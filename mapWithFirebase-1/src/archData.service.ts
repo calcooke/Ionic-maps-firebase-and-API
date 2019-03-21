@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
 export class archDataService{
 
     public monuments:any;
-    public monumntTypes:any = [];
-
+    
     constructor(public http: HttpClient) {
         
     }
