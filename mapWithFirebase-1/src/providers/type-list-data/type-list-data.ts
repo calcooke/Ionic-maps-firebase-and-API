@@ -1,19 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {archDataService} from '../../archData.service';
 
-/*
-  Generated class for the TypeListDataProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class TypeListDataProvider {
 
   items: any;
 
-    constructor(public http: Http) {
+    constructor(public http: Http, private archService:archDataService) {
 
         this.items = [
             {title: 'one'},
@@ -28,14 +24,17 @@ export class TypeListDataProvider {
 
     filterItems(searchTerm){
 
-      console.log('Set filter triggering function in service');
+      // console.log('Set filter triggering function in service');
+      // console.log('Search term is');
+      // console.log(searchTerm);
+
 
         return this.items.filter((item) => {
           console.log('Filter should have worked');
             return item.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         });     
 
-        //
+      
 
     }
 

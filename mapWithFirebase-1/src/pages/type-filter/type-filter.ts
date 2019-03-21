@@ -18,7 +18,7 @@ export class TypeFilterPage {
 
   @ViewChild('typeSelection') selectComponent: IonicSelectableComponent;
 
- searchItem: string = '';
+  searchTerm: string = '';
  items: any;
  searchControl: FormControl;
 
@@ -42,12 +42,13 @@ export class TypeFilterPage {
 
   setFilteredItems(){
 
-    console.log('Set filter working');
+    // console.log('Set filter triggering in TS file');
+    // console.log(this.searchTerm);
 
-    this.items = this.typeListService.filterItems(this.searchItem);
+    this.items = this.typeListService.filterItems(this.searchTerm);
 
-    console.log('Items returned');
-    console.log(this.items);
+    // console.log('Items returned');
+    //console.log(this.items);
 
   }
 
