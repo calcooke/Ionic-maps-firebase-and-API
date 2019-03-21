@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {archDataService} from '../../archData.service';
 import { Observable } from 'rxjs';
+import {Events} from 'ionic-angular';
 
 
 
@@ -11,7 +12,7 @@ export class TypeListDataProvider {
 
   items: any = [];
   
-    constructor(public http: Http, private archService:archDataService) {
+    constructor(public http: Http, private archService:archDataService, public events:Events) {
 
       this.archService.getData().subscribe(result => {
                 
@@ -20,8 +21,6 @@ export class TypeListDataProvider {
         for(let i = 0; i < result.length; i++ ){
           tempArray.push(result[i]['CLASSDESC']);
         }
-        
-        tempArray.sort(function(a,b){return a-b});
         
         this.removeDuplicates(tempArray);
             
@@ -34,11 +33,13 @@ export class TypeListDataProvider {
         let unique_array = duplicateArray.filter(function(elem, index, self) {
             return index == self.indexOf(elem);
         });
+
         this.items = unique_array;
-        
+        let notice = "Array assigned";
         console.log('After remove duplicates');
         console.log(this.items);
-        this.filterItems('');
+        this.events.publish('monuments:retrieved', notice);
+      
     };
 
     
@@ -49,7 +50,5 @@ export class TypeListDataProvider {
         });
 
     }
-
-    
 
 }

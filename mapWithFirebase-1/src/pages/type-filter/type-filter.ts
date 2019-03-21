@@ -7,6 +7,9 @@ import {TypeListDataProvider} from '../../providers/type-list-data/type-list-dat
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 
+import {Events} from 'ionic-angular';
+import { connectableObservableDescriptor } from 'rxjs/observable/ConnectableObservable';
+
 
 
 @IonicPage()
@@ -19,20 +22,34 @@ export class TypeFilterPage {
   @ViewChild('typeSelection') selectComponent: IonicSelectableComponent;
 
   searchTerm: string = '';
- items: any;
- searchControl: FormControl;
+  items: any;
+  searchControl: FormControl;
+  monumentPopulated:boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public typeListService:TypeListDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public typeListService:TypeListDataProvider, public events:Events) {
     
     this.searchControl = new FormControl();
+
+    // events.subscribe('monuments:retrieved', (notice)=>{
+    //   this.setFilteredItems();
+    // });
 
   }
   
   
   ionViewDidLoad() {
 
-    //this.setFilteredItems();
+    console.log('Boolean is');
+    console.log(this.monumentPopulated);
 
+
+    this.events.subscribe('monuments:retrieved', (notice)=>{
+
+      this.setFilteredItems();
+       
+    });
+
+ 
     this.searchControl.valueChanges.debounceTime(700).subscribe(search =>{
 
       this.setFilteredItems();
@@ -42,6 +59,11 @@ export class TypeFilterPage {
   }
 
   setFilteredItems(){
+
+    console.log('Setting boolean');
+    this.monumentPopulated = true;
+    console.log(this.monumentPopulated);
+    console.log('Setting boolean');
 
     this.items = this.typeListService.filterItems(this.searchTerm);
 
