@@ -24,13 +24,22 @@ export class TypeFilterPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public typeListService:TypeListDataProvider) {
     
+    //this.typeListService.retrieveData();
     this.searchControl = new FormControl();
 
   }
-
+  
+  
   ionViewDidLoad() {
+
+    //this.typeListService.retrieveData();
+
+    console.log('Type filter TS file loaded');
+    console.log('Checking the items retrieved boolean');
     
-    this.setFilteredItems();
+    console.log(this.typeListService.itemsRetrieved);
+
+    //this.setFilteredItems();
 
     this.searchControl.valueChanges.debounceTime(700).subscribe(search =>{
 
