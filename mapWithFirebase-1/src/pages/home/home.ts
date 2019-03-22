@@ -33,15 +33,15 @@ export class HomePage {
 
   public openModal(){
 
-    console.log('Modal open');
+    //console.log('Modal open');
     var modalPage = this.modalCtrl.create('ModalPage'); 
-    console.log('Presenting modal');
+    //console.log('Presenting modal');
     modalPage.present();
 
   }
 
   public clearFilter(){
-    console.log('CLEAR FILTER');
+    //console.log('CLEAR FILTER');
     this.events.publish('clear:filters');
   }
 

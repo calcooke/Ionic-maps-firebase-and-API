@@ -41,15 +41,11 @@ export class GoogleMapComponent {
 
     events.subscribe('clear:filters', (types)=>{
       
-      console.log('Affirmative');
       this.clearFilter();
       
     });
 
-
   }
-
-  
   ngOnInit(){
     
     this.cardTitle = 'New card text';
@@ -57,15 +53,12 @@ export class GoogleMapComponent {
     setTimeout(() => {
        this.initMap();
     }, 100);
-    //this.initMap();
-  
+    
     this.retrieveMonuments();
    
   }
 
   
-
-
   public openModal(monumenttitle:any ){
 
     var data = {message: monumenttitle}; 
@@ -164,7 +157,7 @@ export class GoogleMapComponent {
   clearFilter(){
 
     for(let i=0; i < this.monumentsOnMap.length; i++){
-      //console.log(this.monumentsOnMap[i]["l"].title);
+      
       this.monumentsOnMap[i]["l"].setVisible(true);
       
     }
