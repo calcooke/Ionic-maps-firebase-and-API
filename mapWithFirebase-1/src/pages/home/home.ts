@@ -4,6 +4,7 @@ import {AngularFireDatabase} from 'angularfire2/database';
 import {ModalController} from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {FilterMenuPage} from '../filter-menu/filter-menu'
+import {Events} from 'ionic-angular';
 
 declare var google: any;
 
@@ -16,7 +17,7 @@ export class HomePage {
   //items;
   userLocation: any;
 
-  constructor(public navCtrl: NavController, public afd: AngularFireDatabase, public modalCtrl: ModalController, private geolocation:Geolocation) {
+  constructor(public navCtrl: NavController, public afd: AngularFireDatabase, public modalCtrl: ModalController, private geolocation:Geolocation, public events:Events) {
 
     this.getDataFromFirebase();
 
@@ -37,6 +38,11 @@ export class HomePage {
     console.log('Presenting modal');
     modalPage.present();
 
+  }
+
+  public clearFilter(){
+    console.log('CLEAR FILTER');
+    this.events.publish('clear:filters');
   }
 
   getDataFromFirebase(){

@@ -35,12 +35,14 @@ export class GoogleMapComponent {
 
     events.subscribe('filter:type', (types)=>{
       
-      //console.log(notice);
-      // for(let i = 0; i < types.length; i++){
-      //   console.log(types[i]);
-      // }
-
       this.filterByType(types);
+      
+    });
+
+    events.subscribe('clear:filters', (types)=>{
+      
+      console.log('Affirmative');
+      this.clearFilter();
       
     });
 
@@ -75,22 +77,10 @@ export class GoogleMapComponent {
 
   retrieveMonuments(){
   
-  //   this.archService.getData();
-  //   setTimeout(() => {
-  //     console.log(this.archService.monuments);
-  //     this.monuments = this.archService.monuments;
-  //  }, 50);
-
-  //  let data: Observable<any> = this.archService.getData();
-  //       data.subscribe(result => {
-  //         this.monuments = result;
-  //       });
-
       this.archService.getData().subscribe(result => {
           this.monuments = result;
       })
 
-   
   }
 
 
@@ -154,38 +144,20 @@ export class GoogleMapComponent {
 
   filterByType(selected){
 
-    // for(let i = 0; i < selected.length; i++){
-    //     console.log(selected[i]);
-    // }
-
-    // for(let i=0; i < this.monumentsOnMap.length; i++){
-    //   //console.log(this.monumentsOnMap[i]["l"].title);
-
-    //   for(let j = 0; j < selected.length; j++){
-
-    //     if(this.monumentsOnMap[i]["l"].title != selected[j]){
-    //       console.log('match');
-    //     }
-
-    //   }
-      
-    // }
 
     for(let j = 0; j < selected.length; j++){
 
       for(let i=0; i < this.monumentsOnMap.length; i++){
 
         if(this.monumentsOnMap[i]["l"].title != selected[j]){
-                 console.log('match');
-                 this.monumentsOnMap[i]["l"].setVisible(false);
+
+          console.log('match');
+          this.monumentsOnMap[i]["l"].setVisible(false);
   
         }
 
       }
     }
-
-
-    
 
   }
 
