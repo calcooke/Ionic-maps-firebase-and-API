@@ -7,6 +7,8 @@ import { IonicPage } from 'ionic-angular';
 
 import {ModalController} from 'ionic-angular';
 
+import {Events} from 'ionic-angular';
+
 
 declare var google: any;
 
@@ -29,7 +31,16 @@ export class GoogleMapComponent {
   monumentsOnMap: any = [];  
   
   
-  constructor(public http: HttpClient, public archService:archDataService, public modalCtrl: ModalController) {}
+  constructor(public http: HttpClient, public archService:archDataService, public modalCtrl: ModalController, public events:Events) {
+
+    events.subscribe('filter:type', (notice)=>{
+      
+      console.log(notice);
+      
+    });
+
+
+  }
 
   
   ngOnInit(){
@@ -44,6 +55,8 @@ export class GoogleMapComponent {
     this.retrieveMonuments();
    
   }
+
+  
 
 
   public openModal(monumenttitle:any ){
@@ -129,12 +142,29 @@ export class GoogleMapComponent {
   monumentDetail(title){
     console.log(title);
     
+    
+
+    this.clickedOn = true;
+  }
+
+  filterByType(){
+
     for(let i=0; i < this.monumentsOnMap.length; i++){
-      console.log(this.monumentsOnMap[i]["l"].title);
+      //console.log(this.monumentsOnMap[i]["l"].title);
+      this.monumentsOnMap[i]["l"].setVisible(false);
       
     }
 
-    this.clickedOn = true;
+  }
+
+  clearFilter(){
+
+    for(let i=0; i < this.monumentsOnMap.length; i++){
+      //console.log(this.monumentsOnMap[i]["l"].title);
+      this.monumentsOnMap[i]["l"].setVisible(true);
+      
+    }
+
   }
   
 }

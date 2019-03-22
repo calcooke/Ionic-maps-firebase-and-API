@@ -25,6 +25,7 @@ export class TypeFilterPage {
   items: any;
   searchControl: FormControl;
   monumentPopulated:boolean = false;
+  typesToFilter: any = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public typeListService:TypeListDataProvider, public events:Events) {
     
@@ -86,7 +87,14 @@ export class TypeFilterPage {
   }
 
   logListItemTile(title){
-    console.log(title)
+    this.typesToFilter.push(title);
+    console.log(this.typesToFilter);
+  }
+
+  filterByType(){
+
+    this.events.publish('filter:type', this.typesToFilter);
+
   }
 
 }
