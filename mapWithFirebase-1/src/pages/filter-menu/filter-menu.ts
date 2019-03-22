@@ -18,6 +18,8 @@ export class FilterMenuPage {
   tab3Root = FavouriteFilterPage;
   tab4Root = ReviewedFilterPage;
 
+  
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

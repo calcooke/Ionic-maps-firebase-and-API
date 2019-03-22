@@ -30,18 +30,35 @@ export class TypeFilterPage {
     
     this.searchControl = new FormControl();
 
-    // events.subscribe('monuments:retrieved', (notice)=>{
-    //   this.setFilteredItems();
-    // });
+    events.subscribe('monuments:retrieved', (notice)=>{
+      //This is to ensure that set filtered items is only called once the 
+      // service has actually retrieved, stored and sorted the monument data.
+      this.setFilteredItems();
+      
+      
+    });
+
+    events.subscribe('button:pressed', (notice)=>{
+      //this.setFilteredItems();
+      //console.log('Second event heard');
+      
+    });
 
   }
   
   
   ionViewDidLoad() {
 
-    console.log('Boolean is');
-    console.log(this.monumentPopulated);
+    console.log(this.typeListService.items);
 
+    // console.log('Boolean is');
+    // console.log(this.monumentPopulated);
+
+    if(this.typeListService.monumentPopulated == true){
+
+      this.setFilteredItems();
+
+    }
 
     this.events.subscribe('monuments:retrieved', (notice)=>{
 
@@ -60,13 +77,16 @@ export class TypeFilterPage {
 
   setFilteredItems(){
 
-    console.log('Setting boolean');
+    //console.log('Setting boolean to TRUE');
     this.monumentPopulated = true;
-    console.log(this.monumentPopulated);
-    console.log('Setting boolean');
-
+    //console.log(this.monumentPopulated);
+    //console.log('Setting boolean to TRUE');
     this.items = this.typeListService.filterItems(this.searchTerm);
 
+  }
+
+  logListItemTile(title){
+    console.log(title)
   }
 
 }

@@ -26,7 +26,7 @@ export class GoogleMapComponent {
   monumentMarker: any;
   google:any;
   cardTitle: string;
-  
+  monumentsOnMap: any = [];  
   
   
   constructor(public http: HttpClient, public archService:archDataService, public modalCtrl: ModalController) {}
@@ -117,7 +117,10 @@ export class GoogleMapComponent {
         this.monumentDetail(monumentTitle);
         this.openModal(monumentTitle);
 
-      });;
+      });
+
+      this.monumentsOnMap.push(this.monumentMarker);
+      
 
     };
 
@@ -125,6 +128,12 @@ export class GoogleMapComponent {
 
   monumentDetail(title){
     console.log(title);
+    
+    for(let i=0; i < this.monumentsOnMap.length; i++){
+      console.log(this.monumentsOnMap[i]["l"].title);
+      
+    }
+
     this.clickedOn = true;
   }
   
