@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MyApp {
   rootPage:any = HomePage;
+  archObj:any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private http: HttpClient) {
     platform.ready().then(() => {
@@ -23,9 +24,14 @@ export class MyApp {
   }
 
   ngOnInit(){
-    console.log('Does this onini get called?');
+    console.log('Does this oninit get called?');
     let obs = this.http.get('http://webservices.npws.ie/arcgis/rest/services/NM/NationalMonuments/MapServer/0/query?where=entity_id%3D%27cl00567%27&outFields=webnotes&f=pjson')
-    obs.subscribe((response) => console.log(response));
+    obs.subscribe((response) =>this.archObj =response);
+
+    setTimeout(() => {
+      console.log(this.archObj.features[0].attributes.WEBNOTES);
+    }, 2000);
+    
   }
 }
 
