@@ -144,8 +144,14 @@ export class GoogleMapComponent {
 
         if(this.monumentsOnMap[i]["l"].title != selected[j]){
 
+          //let tempArray:any = []
           console.log('match');
+          //tempArray.push(this.monumentsOnMap[i]["l"]);
           this.monumentsOnMap[i]["l"].setVisible(false);
+          //PERHAPS LOOP AROUND THE TEMP ARRAY THAT HOLDS THEM AND SET VISIBLE?
+          //HERD THEM FIRST LIKE SHEEP.
+          //WHATS HAPPENING IS THAT THE FIRST LOOP IS SETTING ALL OF THEM TO FALSE,
+          // AND THEN THEYRE ALREADY FALSE FOR THE SECOND LOOP
   
         }
 
@@ -157,7 +163,7 @@ export class GoogleMapComponent {
   clearFilter(){
 
     for(let i=0; i < this.monumentsOnMap.length; i++){
-      
+
       this.monumentsOnMap[i]["l"].setVisible(true);
       
     }
