@@ -59,9 +59,11 @@ export class GoogleMapComponent {
   }
 
   
-  public openModal(monumenttitle:any ){
+  public openModal(monumenttitle:any, monumentId ){
 
-    var data = {message: monumenttitle}; 
+
+    var data = {message: monumenttitle,
+                id: monumentId}; 
     var modalPage = this.modalCtrl.create('MonumentModalPage', data); 
     modalPage.present();
 
@@ -85,6 +87,7 @@ export class GoogleMapComponent {
   initMap(){
 
     //console.log('Setting map center coords');
+    //let coords = new google.maps.LatLng(52.35465106, -7.700976012);
     let coords = new google.maps.LatLng(53.13639186, -9.280849169);
     
     //console.log('Setting map options');
@@ -108,6 +111,7 @@ export class GoogleMapComponent {
     for(var i=0; i<monuments.length; i++){
       
       let monumentTitle =  monuments[i]["CLASSDESC"];
+      let monumentId = monuments[i]["ENTITY_ID"];
       let coords = new google.maps.LatLng(monuments[i]["LATITUDE"], monuments[i]["LONGITUDE"]);
       this.monumentMarker = new google.maps.Marker({
         position: coords,
@@ -116,7 +120,7 @@ export class GoogleMapComponent {
       }).addListener('click', () =>{
 
         this.monumentDetail(monumentTitle);
-        this.openModal(monumentTitle);
+        this.openModal(monumentTitle, monumentId);
 
       });
 
@@ -137,23 +141,46 @@ export class GoogleMapComponent {
 
   filterByType(selected){
 
+    
+    console.log('Before removing');
+
+    let tempArray = this.monumentsOnMap.filter(item => selected.indexOf(item) === -1);
+
+    
+
+    //   return selected.indexOf(item) === -1;
+      
+    // });
+    console.log('After removing');
+    console.log(tempArray);
+
+    // tempArray.filter(function(item){
+    //   return selected.indexOf(item) === -1;
+      
+    // });
+
+    //console.log(tempArray);
 
     for(let j = 0; j < selected.length; j++){
 
+
+
       for(let i=0; i < this.monumentsOnMap.length; i++){
 
-        if(this.monumentsOnMap[i]["l"].title != selected[j]){
+      
 
-          //let tempArray:any = []
-          console.log('match');
-          //tempArray.push(this.monumentsOnMap[i]["l"]);
-          this.monumentsOnMap[i]["l"].setVisible(false);
-          //PERHAPS LOOP AROUND THE TEMP ARRAY THAT HOLDS THEM AND SET VISIBLE?
-          //HERD THEM FIRST LIKE SHEEP.
-          //WHATS HAPPENING IS THAT THE FIRST LOOP IS SETTING ALL OF THEM TO FALSE,
-          // AND THEN THEYRE ALREADY FALSE FOR THE SECOND LOOP
-  
-        }
+          if(this.monumentsOnMap[i]["l"].title != selected[j]){
+
+            //let tempArray:any = []
+            console.log('match');
+            //tempArray.push(this.monumentsOnMap[i]["l"]);
+            this.monumentsOnMap[i]["l"].setVisible(false);
+            //PERHAPS LOOP AROUND THE TEMP ARRAY THAT HOLDS THEM AND SET VISIBLE?
+            //HERD THEM FIRST LIKE SHEEP.
+            //WHATS HAPPENING IS THAT THE FIRST LOOP IS SETTING ALL OF THEM TO FALSE,
+            // AND THEN THEYRE ALREADY FALSE FOR THE SECOND LOOP
+    
+          }
 
       }
     }

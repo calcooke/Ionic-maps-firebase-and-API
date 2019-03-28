@@ -27,7 +27,7 @@ export class TypeFilterPage {
   monumentPopulated:boolean = false;
   typesToFilter: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public typeListService:TypeListDataProvider, public events:Events) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public typeListProvider:TypeListDataProvider, public events:Events) {
     
     this.searchControl = new FormControl();
 
@@ -50,12 +50,12 @@ export class TypeFilterPage {
   
   ionViewDidLoad() {
 
-    console.log(this.typeListService.items);
+    console.log(this.typeListProvider.items);
 
     // console.log('Boolean is');
     // console.log(this.monumentPopulated);
 
-    if(this.typeListService.monumentPopulated == true){
+    if(this.typeListProvider.monumentPopulated == true){
 
       this.setFilteredItems();
 
@@ -82,17 +82,18 @@ export class TypeFilterPage {
     this.monumentPopulated = true;
     //console.log(this.monumentPopulated);
     //console.log('Setting boolean to TRUE');
-    this.items = this.typeListService.filterItems(this.searchTerm);
+    this.items = this.typeListProvider.filterItems(this.searchTerm);
 
   }
 
-  logListItemTile(title){
+  addTitleToFilter(title){
     this.typesToFilter.push(title);
     console.log(this.typesToFilter);
   }
 
   filterByType(){
 
+    //This event alerts google.map.ts to set the visible value on the filtered markers
     this.events.publish('filter:type', this.typesToFilter);
 
   }

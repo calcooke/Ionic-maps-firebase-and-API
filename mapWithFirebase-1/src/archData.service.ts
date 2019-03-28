@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class archDataService{
 
     public monuments:any;
+    public monumentDescription:any;
     
     constructor(public http: HttpClient) {
         
@@ -22,6 +23,18 @@ export class archDataService{
         return data;
       
     }
+
+    retrieveDescription(id):Observable<any>{
+
+        let obs = this.http.get(`http://webservices.npws.ie/arcgis/rest/services/NM/NationalMonuments/MapServer/0/query?where=entity_id%3D%27${id}%27&outFields=webnotes&f=pjson`)
+
+        //obs.subscribe((response) => console.log(response));
+
+        return obs;
+
+    }
+
+
     
 }
 

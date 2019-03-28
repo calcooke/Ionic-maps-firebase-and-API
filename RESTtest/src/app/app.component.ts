@@ -11,8 +11,11 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   rootPage:any = HomePage;
   archObj:any;
+  monumentId = "cl00567";
+  //`${this.monumentId}`
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private http: HttpClient) {
     platform.ready().then(() => {
@@ -24,8 +27,11 @@ export class MyApp {
   }
 
   ngOnInit(){
-    console.log('Does this oninit get called?');
-    let obs = this.http.get('http://webservices.npws.ie/arcgis/rest/services/NM/NationalMonuments/MapServer/0/query?where=entity_id%3D%27cl00567%27&outFields=webnotes&f=pjson')
+    
+    console.log(`http://webservices.npws.ie/arcgis/rest/services/NM/NationalMonuments/MapServer/0/query?where=entity_id=%27${this.monumentId}%27&outFields=webnotes&f=pjson`)
+    // let obs = this.http.get('http://webservices.npws.ie/arcgis/rest/services/NM/NationalMonuments/MapServer/0/query?where=entity_id%3D%27cl00567%27&outFields=webnotes&f=pjson')
+    let obs = this.http.get(`http://webservices.npws.ie/arcgis/rest/services/NM/NationalMonuments/MapServer/0/query?where=entity_id%3D%27${this.monumentId}%27&outFields=webnotes&f=pjson`)
+
     obs.subscribe((response) =>this.archObj =response);
 
     setTimeout(() => {
