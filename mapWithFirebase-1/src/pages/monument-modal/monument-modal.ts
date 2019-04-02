@@ -2,13 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ViewController} from 'ionic-angular';
 import {archDataService} from '../../archData.service';
+import { AddReviewPage } from '../add-review/add-review';
 
-/**
- * Generated class for the MonumentModalPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -43,5 +39,14 @@ export class MonumentModalPage {
     this.viewCtrl.dismiss();
     console.log('Modal closed');
   }
+
+  public addReview(){
+
+    console.log('Pushing page');
+    this.navCtrl.push(AddReviewPage,{
+      
+    });
+
+  };
 
 }

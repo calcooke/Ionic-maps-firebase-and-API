@@ -25,6 +25,7 @@ import {FavouriteFilterPage} from '../pages/favourite-filter/favourite-filter';
 import {ReviewedFilterPage} from '../pages/reviewed-filter/reviewed-filter';
 import {IonicSelectableModule} from 'ionic-selectable';
 import { TypeListDataProvider } from '../providers/type-list-data/type-list-data';
+import {AddReviewPage} from '../pages/add-review/add-review';
 
 
 
@@ -48,7 +49,8 @@ var config = {
     TypeFilterPage,
     LocationFilterPage,
     FavouriteFilterPage,
-    ReviewedFilterPage  
+    ReviewedFilterPage,
+    AddReviewPage
   ],
   imports: [
     HttpClientModule,
@@ -68,7 +70,8 @@ var config = {
     TypeFilterPage,
     LocationFilterPage,
     FavouriteFilterPage,
-    ReviewedFilterPage
+    ReviewedFilterPage,
+    AddReviewPage
     
   ],
   providers: [

@@ -1,14 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 import {IonicSelectableComponent} from 'ionic-selectable';
 import {TypeListDataProvider} from '../../providers/type-list-data/type-list-data';
 
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
+//import {MyApp} from '../../app/app.component';
 
-import {Events} from 'ionic-angular';
-import { connectableObservableDescriptor } from 'rxjs/observable/ConnectableObservable';
+//import {Events} from 'ionic-angular';
+import {HomePage} from '../home/home';
+import {FilterMenuPage} from '../filter-menu/filter-menu';
+//import { connectableObservableDescriptor } from 'rxjs/observable/ConnectableObservable';
 
 
 
@@ -95,6 +98,22 @@ export class TypeFilterPage {
 
     //This event alerts google.map.ts to set the visible value on the filtered markers
     this.events.publish('filter:type', this.typesToFilter);
+    //this.navCtrl.popToRoot();
+    //this.navCtrl.pop();
+    //this.navCtrl.popTo(HomePage);
+    //this.app.rootPage.popToRoot();
+    //this.navCtrl.first();
+    //this.navCtrl.setRoot(HomePage)
+    //this.navCtrl.parent.popTo(HomePage);
+
+    //The solution
+    // this.navCtrl.setRoot(HomePage);
+    // this.navCtrl.popToRoot();
+
+    //this.events.publish('items:selected');
+  
+
+    console.log("should have popped");
 
   }
 

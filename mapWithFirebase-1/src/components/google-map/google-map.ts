@@ -36,6 +36,7 @@ export class GoogleMapComponent {
     events.subscribe('filter:type', (types)=>{
       
       this.filterByType(types);
+      //this.events.publish('items:selected');
       
     });
 
@@ -142,17 +143,17 @@ export class GoogleMapComponent {
   filterByType(selected){
 
     
-    console.log('Before removing');
+    //console.log('Before removing');
 
-    let tempArray = this.monumentsOnMap.filter(item => selected.indexOf(item) === -1);
+    //let tempArray = this.monumentsOnMap.filter(item => selected.indexOf(item) === -1);
 
     
 
     //   return selected.indexOf(item) === -1;
       
     // });
-    console.log('After removing');
-    console.log(tempArray);
+    // console.log('After removing');
+    // console.log(tempArray);
 
     // tempArray.filter(function(item){
     //   return selected.indexOf(item) === -1;
@@ -161,29 +162,52 @@ export class GoogleMapComponent {
 
     //console.log(tempArray);
 
-    for(let j = 0; j < selected.length; j++){
+    //for(let i=0; i < this.monumentsOnMap.length; i++){
 
+      console.log(selected);
 
+    //   for(let j = 0; j < selected.length; j++){
 
-      for(let i=0; i < this.monumentsOnMap.length; i++){
+    //     for(let i=0; i < this.monumentsOnMap.length; i++){
 
+    //         if(this.monumentsOnMap[i]["l"].title != selected[j]){
+
+    //           console.log('match');
+              
+    //           this.monumentsOnMap[i]["l"].setVisible(false);
+            
       
+    //         }
 
-          if(this.monumentsOnMap[i]["l"].title != selected[j]){
+    //     }
+    // }
 
-            //let tempArray:any = []
-            console.log('match');
-            //tempArray.push(this.monumentsOnMap[i]["l"]);
-            this.monumentsOnMap[i]["l"].setVisible(false);
-            //PERHAPS LOOP AROUND THE TEMP ARRAY THAT HOLDS THEM AND SET VISIBLE?
-            //HERD THEM FIRST LIKE SHEEP.
-            //WHATS HAPPENING IS THAT THE FIRST LOOP IS SETTING ALL OF THEM TO FALSE,
-            // AND THEN THEYRE ALREADY FALSE FOR THE SECOND LOOP
-    
-          }
+    for (let i = 0; i < this.monumentsOnMap.length; i++)
+      {
+        // let's assume we are not going to find this monument in the selected array
+        let found = false;
 
+        // now let's loop through the selected list
+        for (let j = 0; j < selected.length; j++)
+        {
+          if (this.monumentsOnMap[i]['l'].title == selected[j])
+          {
+              // Ok, this monument has been selected, so we are going to keep it
+              // visible. Let's break out of the containing loop i.e. looping through
+              // the selected array, as it is pointless continuing the search as we 
+              // we have found a match
+              found = true;
+              break;
+         }
+        }
+
+        if (found == false)
+        {
+         this.monumentsOnMap[i]['l'].setVisible(false);
+        }
       }
-    }
+
+    
 
   }
 
