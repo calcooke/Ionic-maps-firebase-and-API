@@ -30,6 +30,8 @@ import { TypeListDataProvider } from '../providers/type-list-data/type-list-data
 import {AddReviewPage} from '../pages/add-review/add-review';
 import { MonumentCommentProvider } from '../providers/monument-comment/monument-comment';
 
+import{MapToIterable} from '../pipes/map-to-iterable-pipe';
+
 
 
 // var config = {
@@ -61,7 +63,8 @@ var config = {
     LocationFilterPage,
     FavouriteFilterPage,
     ReviewedFilterPage,
-    AddReviewPage
+    AddReviewPage,
+    MapToIterable
   ],
   imports: [
     HttpClientModule,

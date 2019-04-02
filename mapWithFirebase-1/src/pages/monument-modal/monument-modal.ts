@@ -21,6 +21,7 @@ export class MonumentModalPage {
   monumentId:any;
   monumentDescription:any;
   monumentReviews:any = [];
+  monumentComments:any = [];
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad ModalPage');
@@ -32,13 +33,21 @@ export class MonumentModalPage {
     this.archService.retrieveDescription(this.navParams.get('id')).subscribe(result => {
       //console.log(result);
       this.monumentDescription = result.features[0].attributes.WEBNOTES;
-  })
+      })
+
+
 
   this.monumentService.getReview(this.monumentId.toLowerCase())
       .subscribe(docs => {
        
         this.monumentReviews= docs.payload.data();
-        console.log(this.monumentReviews['comments']);
+        // console.log("This is monumentReviews");
+        // console.log(this.monumentReviews);
+        console.log("This is the rating");
+        console.log(this.monumentReviews.comments['rating']);
+        
+        
+    
           // this.monumentReviews =  docs.map(item => {
           //     return {
           //       id:  item.payload.doc.id,
@@ -46,7 +55,7 @@ export class MonumentModalPage {
           //     };
           // }); 
           
-        //console.log(this.monumentReviews[0].atmosphere);
+        
       
       });    
 
@@ -60,10 +69,12 @@ export class MonumentModalPage {
     console.log('Modal closed');
   }
 
-  public addReview(){
+  public addReview(monumentId){
 
     console.log('Pushing page');
     this.navCtrl.push(AddReviewPage,{
+      
+      id:monumentId
       
     });
 

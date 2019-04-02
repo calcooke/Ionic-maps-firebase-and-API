@@ -13,8 +13,21 @@
   <ion-content padding>
   
     <p>{{monumentDescription}}</p>
-    <p>{{monumentId}}</p>
+    <!-- <p>{{monumentId}}</p> -->
     
+    <ion-list *ngFor="let comment of monumentReviews.comments">
+
+        <ion-item>
+            <ion-label>{{ comment.comment}}</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{comment.userId}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{comment.rating}}</ion-label>
+          </ion-item>
+
+    </ion-list>
 
     <ion-buttons>
       <button ion-button full (click)="addReview()">Add review</button>
