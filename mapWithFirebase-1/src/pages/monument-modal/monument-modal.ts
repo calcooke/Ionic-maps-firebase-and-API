@@ -20,7 +20,7 @@ export class MonumentModalPage {
   monumentTitle: any;
   monumentId:any;
   monumentDescription:any;
-  monumentReview:any = [];
+  monumentReviews:any = [];
 
   ionViewDidLoad() {
     //console.log('ionViewDidLoad ModalPage');
@@ -34,21 +34,21 @@ export class MonumentModalPage {
       this.monumentDescription = result.features[0].attributes.WEBNOTES;
   })
 
-  this.monumentService.getReview()
+  this.monumentService.getReview(this.monumentId.toLowerCase())
       .subscribe(docs => {
-        //console.log(docs);
-        this.monumentReview =  docs.map(item => {
-          return {
-            id:  item.payload.doc.id,
-            ...item.payload.doc.data()
-          };
-        }); 
-        console.log(this.monumentReview);
-        console.log(this.monumentReview[0].atmosphere);
+       
+        this.monumentReviews= docs.payload.data();
+        console.log(this.monumentReviews['comments']);
+          // this.monumentReviews =  docs.map(item => {
+          //     return {
+          //       id:  item.payload.doc.id,
+          //       ...item.payload.doc.data()
+          //     };
+          // }); 
+          
+        //console.log(this.monumentReviews[0].atmosphere);
+      
       });    
-
-
-
 
   }
 
