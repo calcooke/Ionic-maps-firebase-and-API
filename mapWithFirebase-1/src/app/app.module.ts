@@ -16,6 +16,8 @@ import {HttpModule} from '@angular/http';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 import {archDataService} from '../archData.service';
 import {FilterMenuPage} from '../pages/filter-menu/filter-menu'
 import {SearchTabsComponent} from '../components/search-tabs/search-tabs'
@@ -26,18 +28,27 @@ import {ReviewedFilterPage} from '../pages/reviewed-filter/reviewed-filter';
 import {IonicSelectableModule} from 'ionic-selectable';
 import { TypeListDataProvider } from '../providers/type-list-data/type-list-data';
 import {AddReviewPage} from '../pages/add-review/add-review';
+import { MonumentCommentProvider } from '../providers/monument-comment/monument-comment';
 
 
 
-var config = {
-  apiKey: "AIzaSyDkwUm605E5id2YTcE_J_nqwhyVQ8jW9WM",
-  authDomain: "testmap-bbc90.firebaseapp.com",
-  databaseURL: "https://testmap-bbc90.firebaseio.com",
-  projectId: "testmap-bbc90",
-  storageBucket: "testmap-bbc90.appspot.com",
-  messagingSenderId: "649800103612"
-};
+// var config = {
+//   apiKey: "AIzaSyDkwUm605E5id2YTcE_J_nqwhyVQ8jW9WM",
+//   authDomain: "testmap-bbc90.firebaseapp.com",
+//   databaseURL: "https://testmap-bbc90.firebaseio.com",
+//   projectId: "testmap-bbc90",
+//   storageBucket: "testmap-bbc90.appspot.com",
+//   messagingSenderId: "649800103612"
+// };
 //firebase.initializeApp(config);
+var config = {
+  apiKey: "AIzaSyBr6-8QfzOAS9QZ35776-Dy9aORu17nh3w",
+    authDomain: "lithic-2a70e.firebaseapp.com",
+    databaseURL: "https://lithic-2a70e.firebaseio.com",
+    projectId: "lithic-2a70e",
+    storageBucket: "lithic-2a70e.appspot.com",
+    messagingSenderId: "803254680100"
+};
 
 @NgModule({
   declarations: [
@@ -60,7 +71,8 @@ var config = {
     AngularFireModule.initializeApp(config),
     IonicModule.forRoot(MyApp),
     IonicSelectableModule,
-    HttpModule
+    HttpModule,
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -80,7 +92,8 @@ var config = {
     archDataService,
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    TypeListDataProvider
+    TypeListDataProvider,
+    MonumentCommentProvider
   ],
   exports: [ ]
 })
