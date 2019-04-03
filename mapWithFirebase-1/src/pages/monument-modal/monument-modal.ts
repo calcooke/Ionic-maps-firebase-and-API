@@ -40,10 +40,13 @@ export class MonumentModalPage {
   this.monumentService.getReview(this.monumentId.toLowerCase())
       .subscribe(docs => {
        
-        this.monumentReviews= docs.payload.data();
+        if (docs.payload.exists)
+        {
+          this.monumentReviews= docs.payload.data();
+        }
         // console.log("This is monumentReviews");
         // console.log(this.monumentReviews);
-        console.log("This is the rating");
+        // console.log("This is the rating");
         //console.log(this.monumentReviews.comments['rating']);
         
         
@@ -69,12 +72,13 @@ export class MonumentModalPage {
     console.log('Modal closed');
   }
 
-  public addReview(monumentId){
+  public addReview(){
 
-    console.log('Pushing page');
+    console.log('Opening the add review page and the Id being passed is');
+    console.log(this.monumentId.toLowerCase());
     this.navCtrl.push(AddReviewPage,{
       
-      id:monumentId
+      id: this.monumentId.toLowerCase()
       
     });
 

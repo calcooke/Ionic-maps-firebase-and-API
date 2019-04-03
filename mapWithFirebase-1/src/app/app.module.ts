@@ -34,6 +34,8 @@ import{MapToIterable} from '../pipes/map-to-iterable-pipe';
 
 
 
+
+
 // var config = {
 //   apiKey: "AIzaSyDkwUm605E5id2YTcE_J_nqwhyVQ8jW9WM",
 //   authDomain: "testmap-bbc90.firebaseapp.com",
