@@ -6,6 +6,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {FilterMenuPage} from '../filter-menu/filter-menu'
 import {Events} from 'ionic-angular';
 
+
 declare var google: any;
 
 @Component({

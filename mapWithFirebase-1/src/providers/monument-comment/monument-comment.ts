@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore} from 'angularfire2/firestore';
 import { FirebaseApp } from 'angularfire2';
 import { _getAngularFireDatabase } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
 
 
 @Injectable()
@@ -39,6 +40,7 @@ export class MonumentCommentProvider {
     this.monumentsDb.collection("monuments").doc(id).update({
 
       //review: this.monumentsDb.firestore.FieldValue.arrayRemove(review)
+      review: firebase.firestore.FieldValue.arrayUnion(review);
 
     });
 
