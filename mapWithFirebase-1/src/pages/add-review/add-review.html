@@ -17,12 +17,28 @@
 
     <form [formGroup]="addReviewForm">
 
-        <ion-label>
+      <ion-label>
             Comment:
-        </ion-label>
+      </ion-label>
+
       <ion-item>
-         
           <ion-input type='text' formControlName='comment'></ion-input>
+      </ion-item>
+
+      <ion-label>
+          Rating:
+      </ion-label>
+
+      <ion-item>
+        <ion-input type='number' formControlName='rating'></ion-input>
+      </ion-item>
+
+      <ion-label>
+          UserId:
+      </ion-label>
+
+      <ion-item>
+        <ion-input type='number' formControlName='userId'></ion-input>
       </ion-item>
 
     </form>

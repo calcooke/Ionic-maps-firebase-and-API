@@ -44,7 +44,7 @@ export class MonumentModalPage {
         // console.log("This is monumentReviews");
         // console.log(this.monumentReviews);
         console.log("This is the rating");
-        console.log(this.monumentReviews.comments['rating']);
+        //console.log(this.monumentReviews.comments['rating']);
         
         
     

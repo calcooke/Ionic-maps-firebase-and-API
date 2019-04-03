@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore} from 'angularfire2/firestore';
+import { FirebaseApp } from 'angularfire2';
+import { _getAngularFireDatabase } from 'angularfire2/database';
 
 
 @Injectable()
@@ -29,9 +31,29 @@ export class MonumentCommentProvider {
 
   }
 
-  addReview(comment, id){
+  addReview(review, id){
 
-    this.monumentsDb.collection("monuments").doc(id).update(comment);
+    console.log('Review to add');
+    console.log(review);
+
+    this.monumentsDb.collection("monuments").doc(id).update({
+
+      //review: this.monumentsDb.firestore.FieldValue.arrayRemove(review)
+
+    });
+
+    // this.monumentsDb.collection("monuments").doc(id).set({
+
+    //   reviews: [{
+
+    //     comment: review.comment,
+    //     rating: review.rating,
+    //     userId: review.userId
+
+    //   }]
+
+
+    // });
 
   }
 
