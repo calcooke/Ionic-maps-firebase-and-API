@@ -8,6 +8,9 @@ import { IonicPage } from 'ionic-angular';
 import {ModalController} from 'ionic-angular';
 
 import {Events} from 'ionic-angular';
+import { GeoLocationProvider } from '../../providers/geo-location/geo-location';
+import { Geolocation } from '@ionic-native/geolocation';
+
 
 
 declare var google: any;
@@ -28,10 +31,11 @@ export class GoogleMapComponent {
   monumentMarker: any;
   google:any;
   cardTitle: string;
-  monumentsOnMap: any = [];  
+  monumentsOnMap: any = []; 
+  userLocation:any;
   
   
-  constructor(public http: HttpClient, public archService:archDataService, public modalCtrl: ModalController, public events:Events) {
+  constructor(public http: HttpClient, public archService:archDataService, public modalCtrl: ModalController, public events:Events, private geolocation:Geolocation) {
 
     events.subscribe('filter:type', (types)=>{
       
@@ -46,16 +50,20 @@ export class GoogleMapComponent {
       
     });
 
+    
+
   }
   ngOnInit(){
-    
+
+
     this.cardTitle = 'New card text';
     //console.log('Initializing map');
     setTimeout(() => {
        this.initMap();
-    }, 100);
+    }, 1000);
     
     this.retrieveMonuments();
+    
    
   }
 
@@ -127,8 +135,33 @@ export class GoogleMapComponent {
 
       this.monumentsOnMap.push(this.monumentMarker);
       
-
+      this.addUserMarker();
     };
+
+  }
+
+  addUserMarker(){
+
+    this.geolocation.getCurrentPosition().then((resp) => {
+      // console.log(resp.coords.latitude);
+      // console.log(resp.coords.longitude);
+      // this.userLocation.lat = resp.coords.latitude;
+      // this.userLocation.long = resp.coords.longitude;
+      let coords = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+
+        this.userLocation = new google.maps.Marker({
+          position: coords,
+          icon: {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+            scale: 5
+          },
+          map: this.map
+
+        });
+
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
 
   }
 

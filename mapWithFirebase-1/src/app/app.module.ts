@@ -4,7 +4,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import {GoogleMapComponent} from '../components/google-map/google-map';
-import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { Geolocation } from '@ionic-native/geolocation';
+//import { Geolocation } from '@ionic-native/geolocation';
 
 
 
@@ -31,6 +32,7 @@ import {AddReviewPage} from '../pages/add-review/add-review';
 import { MonumentCommentProvider } from '../providers/monument-comment/monument-comment';
 
 import{MapToIterable} from '../pipes/map-to-iterable-pipe';
+import { GeoLocationProvider } from '../providers/geo-location/geo-location';
 
 
 
@@ -98,7 +100,8 @@ var config = {
     Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TypeListDataProvider,
-    MonumentCommentProvider
+    MonumentCommentProvider,
+    GeoLocationProvider
   ],
   exports: [ ]
 })
