@@ -1,0 +1,48 @@
+<ion-header>
+
+  <ion-navbar class="modal">
+      <ion-title>{{monumentTitle}}</ion-title>
+      <ion-buttons end>
+      <button ion-button (click)="closeModal()">Close</button>
+      </ion-buttons>
+  </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+  
+    <p>{{monumentDescription}}</p>
+    <p>{{monumentId}}</p>
+    <h3>Comments</h3>
+    
+    <!-- <ion-list *ngFor="let comment of monumentReviews.reviews">
+
+        <ion-item>
+            <ion-label>{{ comment.comment}}</ion-label>
+        </ion-item>
+    
+    </ion-list> -->
+
+    <ion-card *ngFor="let comment of monumentReviews.reviews">
+
+      <ion-card-header>
+        <ion-icon name="contact"></ion-icon>
+        User name: {{comment.userId}}
+        <p>Date</p>
+      </ion-card-header>
+
+
+
+        <ion-card-content>
+              {{comment.comment}}
+              
+        </ion-card-content>
+
+      </ion-card>
+
+    <ion-buttons>
+      <button ion-button full (click)="addReview()">Add review</button>
+    </ion-buttons>
+
+  </ion-content>
