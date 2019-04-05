@@ -9,7 +9,8 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class MonumentCommentProvider {
 
-  
+  // "rxjs": "^6.4.0",
+  //   "rxjs-compat": "^6.4.0",
 
   constructor(public http: HttpClient,  public monumentsDb:AngularFirestore) {
     console.log('Hello MonumentCommentProvider Provider');
