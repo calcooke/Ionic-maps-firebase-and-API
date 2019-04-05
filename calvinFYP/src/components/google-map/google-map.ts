@@ -79,11 +79,15 @@ export class GoogleMapComponent {
   
   public openModal(monumenttitle:any, monumentId ){
 
-
+    console.log("I call openModal() to open the modal page and pass the title and id");
     var data = {message: monumenttitle,
                 id: monumentId}; 
+    console.log("title and id are put into a data object");           
     var modalPage = this.modalCtrl.create('MonumentModalPage', data); 
+    console.log("The modal page is created with the info"); 
     modalPage.present();
+    console.log("The modal's present method is called to open it");
+    
 
   }
 
@@ -195,7 +199,7 @@ export class GoogleMapComponent {
   }
 
   monumentDetail(title){
-    console.log(title);
+    console.log("Clicking on a marker works");
     
     
 

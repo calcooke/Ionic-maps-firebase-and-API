@@ -14,7 +14,11 @@ import {MonumentCommentProvider} from '../../providers/monument-comment/monument
 })
 export class MonumentModalPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, private archService:archDataService, private monumentService:MonumentCommentProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public viewCtrl: ViewController, private archService:archDataService, 
+    private monumentService:MonumentCommentProvider) {
+      
+    console.log("The modal's constructor is called");
   }
 
   monumentTitle: any;
@@ -24,7 +28,11 @@ export class MonumentModalPage {
   monumentComments:any = [];
 
   ionViewDidLoad() {
-    //console.log('ionViewDidLoad ModalPage');
+    
+    console.log("The modal page has loaded"); 
+
+    console.log("Now going to get the data from the nav params")
+
     console.log(this.navParams.get('message'));
     this.monumentTitle = this.navParams.get('message');
     this.monumentId = this.navParams.get('id');
