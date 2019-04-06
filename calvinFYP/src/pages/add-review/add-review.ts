@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import {MonumentCommentProvider} from '../../providers/monument-comment/monument-comment';
 
+
 /**
  * Generated class for the AddReviewPage page.
  *
@@ -20,6 +21,7 @@ export class AddReviewPage {
 
   public addReviewForm: FormGroup;
   paramData:any = [];
+  //firstLogin: boolean = true;
 
   constructor(public navCtrl: NavController, private monumentCommentService: MonumentCommentProvider, public alertCtrl: AlertController, public navParams: NavParams, public formBuilder: FormBuilder) {
 
@@ -73,9 +75,27 @@ export class AddReviewPage {
         {
           text: 'Ok',
           handler: () => {
-            console.log('Ok clicked, checking if Id is still here before contacting review service: ' , id);
+            console.log('Ok clicked, calling addReview method in review service');
             this.monumentCommentService.addReview(review,id );
-            this.navCtrl.pop();
+            //this.navCtrl.pop();
+            //this.navCtrl.popToRoot();
+            //this.navCtrl.popTo('MonumentModalPage')
+            //this.navCtrl.popTo(MonumentModalPage)
+            console.log("Popping back to monument modal");
+            //console.log("Is this the first login?", this.firstLogin);
+
+            this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-3));
+
+            // if(this.firstLogin == true){
+
+            //   this.firstLogin = false;
+            //   this.navCtrl.popTo(this.navCtrl.getByIndex(this.navCtrl.length()-3));
+              
+            // } else {
+            //   this.navCtrl.pop();
+            // };
+
+        
           }
         }
       ]

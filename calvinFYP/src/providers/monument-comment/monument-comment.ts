@@ -13,7 +13,7 @@ export class MonumentCommentProvider {
   //   "rxjs-compat": "^6.4.0",
 
   constructor(public http: HttpClient,  public monumentsDb:AngularFirestore) {
-    console.log('Hello MonumentCommentProvider Provider');
+    console.log('Monument review service injected');
   }
 
   getReview(id){
@@ -27,10 +27,9 @@ export class MonumentCommentProvider {
     //let docId:string = id;
     let docId:string = id.id;
 
-    console.log('Calling the arrayUnion function with the review');
-    console.log(review);
-    console.log("And the ID being passed with it is");
-    console.log(docId);
+    console.log('Monument review service is updating the monument ', docId );
+    console.log("With the following review: ", review);
+    
 
     /*
     this.monumentsDb.collection("monuments").doc(docId).set(review).then( function(d) {
