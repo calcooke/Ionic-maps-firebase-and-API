@@ -24,6 +24,7 @@ export class MonumentCommentProvider {
 
   addReview(review, id){
 
+    //let docId:string = id;
     let docId:string = id.id;
 
     console.log('Calling the arrayUnion function with the review');

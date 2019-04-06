@@ -4,6 +4,8 @@ import {ViewController} from 'ionic-angular';
 import {archDataService} from '../../archData.service';
 import { AddReviewPage } from '../add-review/add-review';
 import {MonumentCommentProvider} from '../../providers/monument-comment/monument-comment';
+import {AuthServiceProvider} from '../../providers/auth-service/auth-service';
+import {LoginPage} from '../login/login';
 
 
 
@@ -16,7 +18,7 @@ export class MonumentModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public viewCtrl: ViewController, private archService:archDataService, 
-    private monumentService:MonumentCommentProvider) {
+    private monumentService:MonumentCommentProvider, private authSerivce:AuthServiceProvider) {
       
     console.log("The modal's constructor is called");
   }
@@ -82,13 +84,25 @@ export class MonumentModalPage {
 
   public addReview(){
 
-    console.log('Opening the add review page and the Id being passed is');
-    console.log(this.monumentId.toLowerCase());
-    this.navCtrl.push(AddReviewPage,{
-      
-      id: this.monumentId.toLowerCase()
-      
-    });
+    if(this.authSerivce.isLoggedIn == true){
+
+      console.log('Opening the add review page and the Id being passed is');
+      console.log(this.monumentId.toLowerCase());
+      this.navCtrl.push(AddReviewPage,{
+        
+        id: this.monumentId.toLowerCase()
+        
+      });
+
+    } else {
+
+      this.navCtrl.push(LoginPage,{
+        
+        id: this.monumentId.toLowerCase()
+        
+      });
+
+    }
 
   };
 

@@ -36,7 +36,7 @@ import { GeoLocationProvider } from '../providers/geo-location/geo-location';
 
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
-
+import {LoginPage} from '../pages/login/login';
 
 
 
@@ -71,7 +71,8 @@ var config = {
     FavouriteFilterPage,
     ReviewedFilterPage,
     AddReviewPage,
-    MapToIterable
+    MapToIterable,
+    LoginPage
   ],
   imports: [
     HttpClientModule,
@@ -94,7 +95,8 @@ var config = {
     LocationFilterPage,
     FavouriteFilterPage,
     ReviewedFilterPage,
-    AddReviewPage
+    AddReviewPage,
+    LoginPage
     
   ],
   providers: [

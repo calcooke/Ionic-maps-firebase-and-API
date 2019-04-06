@@ -34,7 +34,7 @@ export class AddReviewPage {
   }
 
   ionViewDidLoad() {
-    console.log("The id when the page to write review LOADS is");
+    console.log("The data passed to the Add Review page is");
     console.log(this.navParams.data);
   }
 
@@ -52,14 +52,15 @@ export class AddReviewPage {
       userId: this.addReviewForm.value.userId
     }
 
-    let id:any = this.navParams.data;
+    //let id:any = this.navParams.data;
 
     console.log("Id being passed to service is to push to firestore is");
-    console.log(this.navParams.data)
+    console.log(this.navParams.data.id)
 
     if(this.addReviewForm.valid){
       
-      this.showConfirm(review,id);
+      //this.showConfirm(review,id);
+      this.showConfirm(review,this.navParams.data);
     }
 
   }
@@ -72,7 +73,7 @@ export class AddReviewPage {
         {
           text: 'Ok',
           handler: () => {
-            console.log('Ok clicked');
+            console.log('Ok clicked, checking if Id is still here before contacting review service: ' , id);
             this.monumentCommentService.addReview(review,id );
             this.navCtrl.pop();
           }

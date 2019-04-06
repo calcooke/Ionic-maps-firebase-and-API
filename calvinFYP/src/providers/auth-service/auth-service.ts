@@ -22,7 +22,7 @@ export class AuthServiceProvider {
 	//This sign in function is called from login.ts, credentials consist of email and password.
 
 	signInWithEmail(credentials) {
-        console.log('Sign in with email');
+      console.log("Details are being checked in auth service");
         this.isLoggedIn = true;
 		return this.afAuth.auth.signInWithEmailAndPassword(credentials.email,
              credentials.password);
