@@ -81,12 +81,25 @@ export class TypeFilterPage {
     //console.log(this.monumentPopulated);
     //console.log('Setting boolean to TRUE');
     this.items = this.typeListProvider.filterItems(this.searchTerm);
+    this.items.sort();
 
   }
 
   addTitleToFilter(title){
+
+  //   if (!this.typesToFilter.some((item) => item == title)) {
+  //     this.typesToFilter.push(title);
+  // }
+  if (!this.typesToFilter.includes(title)) {
     this.typesToFilter.push(title);
-    console.log(this.typesToFilter);
+  } else {
+    let i = this.typesToFilter.indexOf(title);
+    console.log("Index is ", i);
+    this.typesToFilter.splice(i,1);
+  }
+
+    // this.typesToFilter.push(title);
+     console.log(this.typesToFilter);
   }
 
   filterByType(){
@@ -103,9 +116,10 @@ export class TypeFilterPage {
 
     //The solution
     // this.navCtrl.setRoot(HomePage);
-    // this.navCtrl.popToRoot();
+    //this.navCtrl.popToRoot();
+    this.navCtrl.pop();
 
-    //this.events.publish('items:selected');
+    this.events.publish('items:selected');
   
 
     console.log("should have popped");

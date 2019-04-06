@@ -4,7 +4,7 @@ import {TypeFilterPage} from '../../pages/type-filter/type-filter';
 import {LocationFilterPage} from '../../pages/location-filter/location-filter';
 import {FavouriteFilterPage} from '../../pages/favourite-filter/favourite-filter';
 import {ReviewedFilterPage} from '../../pages/reviewed-filter/reviewed-filter';
-import {HomePage} from '../home/home';
+//import {HomePage} from '../home/home';
 
 
 @IonicPage()
@@ -24,7 +24,9 @@ export class FilterMenuPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public events:Events) {
 
     events.subscribe('items:selected', () => {
-      this.navCtrl.setRoot(HomePage);
+      console.log("Recieved the message to pop to root")
+      //this.navCtrl.setRoot(HomePage);
+      this.navCtrl.popToRoot();
     });
     //this.navCtrl.setRoot(HomePage);
 
