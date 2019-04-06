@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import {GoogleMapComponent} from '../components/google-map/google-map';
 import { Geolocation } from '@ionic-native/geolocation';
-//import { Geolocation } from '@ionic-native/geolocation';
+
 
 
 
@@ -33,6 +33,9 @@ import { MonumentCommentProvider } from '../providers/monument-comment/monument-
 
 import{MapToIterable} from '../pipes/map-to-iterable-pipe';
 import { GeoLocationProvider } from '../providers/geo-location/geo-location';
+
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 
 
@@ -79,7 +82,8 @@ var config = {
     IonicModule.forRoot(MyApp),
     IonicSelectableModule,
     HttpModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -101,7 +105,9 @@ var config = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     TypeListDataProvider,
     MonumentCommentProvider,
-    GeoLocationProvider
+    GeoLocationProvider,
+    AngularFireAuth,
+    AuthServiceProvider
   ],
   exports: [ ]
 })
