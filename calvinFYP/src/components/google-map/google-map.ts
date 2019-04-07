@@ -178,7 +178,9 @@ export class GoogleMapComponent {
 
   addUserMarker(){
 
-    this.geolocation.getCurrentPosition().then((resp) => {
+    //this.geolocation.getCurrentPosition({enableHighAccuracy: true}).then((resp) => {  //uncomment this line for working stationary position
+      let watch = this.geolocation.watchPosition({enableHighAccuracy: true});   //Delete this line
+      watch.subscribe((resp) => {                                               // and this line if watching position breaks
       // console.log(resp.coords.latitude);
       // console.log(resp.coords.longitude);
       // this.userLocation.lat = resp.coords.latitude;
@@ -194,9 +196,9 @@ export class GoogleMapComponent {
           map: this.map
 
         });
-
-     }).catch((error) => {
-       console.log('Error getting location', error);
+        
+    //  }).catch((error) => {                                    //Uncomment these lines to get stationary position working
+    //    console.log('Error getting location', error);        // getCurrentPosition is a promise so it needs these
      });
 
   }
