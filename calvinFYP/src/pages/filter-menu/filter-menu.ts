@@ -26,7 +26,8 @@ export class FilterMenuPage {
     events.subscribe('items:selected', () => {
       console.log("Recieved the message to pop to root")
       //this.navCtrl.setRoot(HomePage);
-      this.navCtrl.popToRoot();
+      //this.navCtrl.popToRoot();  --works
+      //this.navCtrl.
     });
     //this.navCtrl.setRoot(HomePage);
 

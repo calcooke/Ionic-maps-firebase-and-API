@@ -5,7 +5,10 @@ import {IonicSelectableComponent} from 'ionic-selectable';
 import {TypeListDataProvider} from '../../providers/type-list-data/type-list-data';
 
 import {FormControl} from '@angular/forms';
+
 import 'rxjs/add/operator/debounceTime';
+
+import { App } from 'ionic-angular';
 
 
 
@@ -25,7 +28,7 @@ export class TypeFilterPage {
   monumentPopulated:boolean = false;
   typesToFilter: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public typeListProvider:TypeListDataProvider, public events:Events) {
+  constructor(public navCtrl: NavController,public appCtrl:App, public navParams: NavParams, public typeListProvider:TypeListDataProvider, public events:Events) {
     
     this.searchControl = new FormControl();
 
@@ -117,10 +120,10 @@ export class TypeFilterPage {
     //The solution
     // this.navCtrl.setRoot(HomePage);
     //this.navCtrl.popToRoot();
-    this.navCtrl.pop();
+    //this.navCtrl.pop();
 
-    this.events.publish('items:selected');
-  
+    //this.events.publish('items:selected');  --works
+    this.appCtrl.getRootNav().pop();
 
     console.log("should have popped");
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {ModalController} from 'ionic-angular';
-import { Geolocation } from '@ionic-native/geolocation';
+
 import {FilterMenuPage} from '../filter-menu/filter-menu'
 import {Events} from 'ionic-angular';
 import { Platform } from 'ionic-angular';
@@ -18,11 +18,18 @@ export class HomePage {
 
   //items;
   userLocation: any;
+  //filterActive: boolean = false;
 
-  constructor(public navCtrl: NavController, public platform: Platform, public afd: AngularFireDatabase, public modalCtrl: ModalController, private geolocation:Geolocation, public events:Events) {
+  constructor(public navCtrl: NavController, public platform: Platform, public afd: AngularFireDatabase, public modalCtrl: ModalController, public events:Events) {
 
     
     this.getDataFromFirebase();
+
+    events.subscribe('filter:inactive', (types)=>{
+      
+      let filterActive:boolean = false;
+      console.log("Button should be invisible");
+    });
     //this.locate();
 
     // this.platform.ready().then(()=>{
@@ -75,6 +82,7 @@ export class HomePage {
   public clearFilter(){
     //console.log('CLEAR FILTER');
     this.events.publish('clear:filters');
+    //this.filterActive = false;
   }
 
   getDataFromFirebase(){

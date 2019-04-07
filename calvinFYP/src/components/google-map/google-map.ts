@@ -34,6 +34,7 @@ export class GoogleMapComponent {
   cardTitle: string;
   monumentsOnMap: any = []; 
   userLocation:any;
+  filterActive: boolean = false;
   
   
   constructor(public http: HttpClient, public platform:Platform, public archService:archDataService, public modalCtrl: ModalController, public events:Events, private geolocation:Geolocation) {
@@ -63,6 +64,8 @@ export class GoogleMapComponent {
 
   }
   ngOnInit(){
+
+    //this.events.publish('filter:inactive');
 
     console.log('ng OnInit did in fact init');
     this.cardTitle = 'New card text';
@@ -284,6 +287,8 @@ export class GoogleMapComponent {
       this.monumentsOnMap[i]["l"].setVisible(true);
       
     }
+
+    this.events.publish('filter:inactive');
 
   }
   
