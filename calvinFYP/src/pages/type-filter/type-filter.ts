@@ -107,8 +107,17 @@ export class TypeFilterPage {
 
   filterByType(){
 
+    if(this.typesToFilter.length > 0){
     //This event alerts google.map.ts to set the visible value on the filtered markers
     this.events.publish('filter:type', this.typesToFilter);
+    this.events.publish('filter:active'); 
+    this.appCtrl.getRootNav().pop();
+
+    console.log("should have popped");
+    } else {
+      console.log("Nothing selected");
+    }
+
     //this.navCtrl.popToRoot();
     //this.navCtrl.pop();
     //this.navCtrl.popTo(HomePage);
@@ -123,10 +132,12 @@ export class TypeFilterPage {
     //this.navCtrl.pop();
 
     //this.events.publish('items:selected');  --works
-    this.events.publish('filter:active'); 
-    this.appCtrl.getRootNav().pop();
 
-    console.log("should have popped");
+
+    // this.events.publish('filter:active'); 
+    // this.appCtrl.getRootNav().pop();
+
+    // console.log("should have popped");
 
   }
 
