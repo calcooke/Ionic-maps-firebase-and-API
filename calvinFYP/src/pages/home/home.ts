@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import {AngularFireDatabase} from 'angularfire2/database';
 import {ModalController} from 'ionic-angular';
 
@@ -18,17 +18,29 @@ export class HomePage {
 
   //items;
   userLocation: any;
-  //filterActive: boolean = false;
+  filterActive: boolean = false;
 
-  constructor(public navCtrl: NavController, public platform: Platform, public afd: AngularFireDatabase, public modalCtrl: ModalController, public events:Events) {
+  constructor(public navCtrl: NavController,public navParams: NavParams, public platform: Platform, public afd: AngularFireDatabase, public modalCtrl: ModalController, public events:Events) {
 
     
     this.getDataFromFirebase();
+    console.log("HOW OFTEN DOES A CONSTRUCTOR LOAD?");
+
+    events.subscribe('filter:active', (types)=>{
+      
+      this.filterActive = true;
+      console.log("filterActive boolean is ", this.filterActive);
+      
+      
+    });
+
 
     events.subscribe('filter:inactive', (types)=>{
       
-      let filterActive:boolean = false;
-      console.log("Button should be invisible");
+      this.filterActive = false;
+      console.log("filterActive boolean is ", this.filterActive);
+     
+      
     });
     //this.locate();
 
@@ -50,6 +62,9 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+
+    console.log(this.navParams.data);
+    console.log("HOW OFTEN DOES IONVIEW DID LOAD LOAD?");
 
     //WORKING LOCATION CODE
 

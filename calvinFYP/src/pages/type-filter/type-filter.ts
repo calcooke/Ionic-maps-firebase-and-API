@@ -123,6 +123,7 @@ export class TypeFilterPage {
     //this.navCtrl.pop();
 
     //this.events.publish('items:selected');  --works
+    this.events.publish('filter:active'); 
     this.appCtrl.getRootNav().pop();
 
     console.log("should have popped");
