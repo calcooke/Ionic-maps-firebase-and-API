@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 import {MonumentCommentProvider} from '../../providers/monument-comment/monument-comment';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 
 /**
@@ -23,12 +24,12 @@ export class AddReviewPage {
   paramData:any = [];
   //firstLogin: boolean = true;
 
-  constructor(public navCtrl: NavController, private monumentCommentService: MonumentCommentProvider, public alertCtrl: AlertController, public navParams: NavParams, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, private monumentCommentService: MonumentCommentProvider, public alertCtrl: AlertController, public navParams: NavParams, public formBuilder: FormBuilder, private auth: AuthServiceProvider) {
 
     this.addReviewForm = formBuilder.group({
       comment: ['', Validators.compose([Validators.maxLength(140), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       rating: ['', Validators.required],
-      userId: ['', Validators.required]
+      //userId: ['', Validators.required]
     });
 
     this.paramData = navParams.data;
@@ -51,7 +52,8 @@ export class AddReviewPage {
     let review = {
       comment: this.addReviewForm.value.comment,
       rating: this.addReviewForm.value.rating,
-      userId: this.addReviewForm.value.userId
+      //userId: this.addReviewForm.value.userId
+      userId:this.auth.currentUserid
     }
 
     //let id:any = this.navParams.data;

@@ -64,7 +64,7 @@ export class LoginPage {
 			.then(
 				() => this.navCtrl.push(AddReviewPage, {
                     id: this.navParams.data.id
-                }),
+                }).then(() =>{	console.log("CURRENT USER ID IS ", this.auth.currentUserid)}),
 				error => this.loginError = error.message
 			);
 	}

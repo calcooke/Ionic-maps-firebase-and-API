@@ -8,7 +8,8 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthServiceProvider {
 
-  private user: firebase.User;
+	private user: firebase.User;
+	public currentUserid: String;
 	
 	//Using this boolean to determine if a user needs to sign in or not when editing a player
   isLoggedIn:boolean = false;
@@ -16,6 +17,8 @@ export class AuthServiceProvider {
 	constructor(public afAuth: AngularFireAuth) {
 		afAuth.authState.subscribe(user => {
 			this.user = user;
+			this.currentUserid = user.uid;
+		
 		});
 	}
 
