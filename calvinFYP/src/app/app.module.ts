@@ -37,6 +37,7 @@ import { GeoLocationProvider } from '../providers/geo-location/geo-location';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import {LoginPage} from '../pages/login/login';
+import { MonumentReviewProvider } from '../providers/monument-review/monument-review';
 
 
 
@@ -109,7 +110,8 @@ var config = {
     MonumentCommentProvider,
     GeoLocationProvider,
     AngularFireAuth,
-    AuthServiceProvider
+    AuthServiceProvider,
+    MonumentReviewProvider
   ],
   exports: [ ]
 })

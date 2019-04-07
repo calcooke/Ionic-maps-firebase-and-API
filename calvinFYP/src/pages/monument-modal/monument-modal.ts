@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {ViewController} from 'ionic-angular';
 import {archDataService} from '../../archData.service';
 import { AddReviewPage } from '../add-review/add-review';
-import {MonumentCommentProvider} from '../../providers/monument-comment/monument-comment';
+import {MonumentReviewProvider} from '../../providers/monument-review/monument-review';
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service';
 import {LoginPage} from '../login/login';
 
@@ -18,7 +18,7 @@ export class MonumentModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, 
     public viewCtrl: ViewController, private archService:archDataService, 
-    private monumentService:MonumentCommentProvider, private authSerivce:AuthServiceProvider) {
+    private reviewService:MonumentReviewProvider, private authSerivce:AuthServiceProvider) {
       
     console.log("The modal's constructor is called");
   }
@@ -47,7 +47,7 @@ export class MonumentModalPage {
 
 
 
-  this.monumentService.getReview(this.monumentId.toLowerCase())
+  this.reviewService.getReview(this.monumentId.toLowerCase())
       .subscribe(docs => {
        
         if (docs.payload.exists)

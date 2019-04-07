@@ -2,16 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
-import {MonumentCommentProvider} from '../../providers/monument-comment/monument-comment';
+import {MonumentReviewProvider} from '../../providers/monument-review/monument-review';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 
-/**
- * Generated class for the AddReviewPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -24,7 +18,7 @@ export class AddReviewPage {
   paramData:any = [];
   //firstLogin: boolean = true;
 
-  constructor(public navCtrl: NavController, private monumentCommentService: MonumentCommentProvider, public alertCtrl: AlertController, public navParams: NavParams, public formBuilder: FormBuilder, private auth: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, private reviewService: MonumentReviewProvider, public alertCtrl: AlertController, public navParams: NavParams, public formBuilder: FormBuilder, private auth: AuthServiceProvider) {
 
     this.addReviewForm = formBuilder.group({
       comment: ['', Validators.compose([Validators.maxLength(140), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -79,7 +73,7 @@ export class AddReviewPage {
           text: 'Ok',
           handler: () => {
             console.log('Ok clicked, calling addReview method in review service');
-            this.monumentCommentService.addReview(review,id );
+            this.reviewService.addReview(review,id );
             //this.navCtrl.pop();
             //this.navCtrl.popToRoot();
             //this.navCtrl.popTo('MonumentModalPage')
