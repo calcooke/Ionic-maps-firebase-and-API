@@ -38,7 +38,7 @@
               {{review.comment}}
               
         </ion-card-content>
-        <p *ngIf="review.userId == authSerivce.currentUserid">User Id matches</p>
+        <p *ngIf="review.userId == authSerivce.currentUserid">User Id matches current user</p>
         <button ion-button *ngIf="review.userId == authSerivce.currentUserid" (click)="editReview(review)" >Edit</button>
       </ion-card>
 

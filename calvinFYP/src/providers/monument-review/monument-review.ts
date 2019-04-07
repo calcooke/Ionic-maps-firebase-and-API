@@ -14,8 +14,7 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class MonumentReviewProvider {
 
-  // "rxjs": "^6.4.0",
-  //   "rxjs-compat": "^6.4.0",
+  
 
   constructor(public http: HttpClient,  public monumentsDb:AngularFirestore) {
     console.log('Monument review service injected');
@@ -98,6 +97,17 @@ export class MonumentReviewProvider {
 
     // });
 
+  }
+
+  editReview(monumentId, review) {
+    console.log("Need to update ",monumentId, " where current user ID == ", review.userId)
+    //this.monumentsDb.doc("monuments/"+id).update(review);
+  }
+
+  deleteReview(monumentId, currentUserId){
+    console.log("Delete the review in ", monumentId, "where the user id is ", currentUserId);
+    //this.monumentsDb.doc("monuments/"+monumentId).collection('reviews')
+    console.log(this.monumentsDb.doc("monuments/"+monumentId).collection('reviews'));
   }
 
 }

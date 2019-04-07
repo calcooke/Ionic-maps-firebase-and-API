@@ -107,10 +107,11 @@ export class MonumentModalPage {
 
   };
 
-  public editReview(review){
+  public editReview(review ){
     this.navCtrl.push(EditReviewPage,{
       comment: review.comment,
-      rating: review.rating
+      rating: review.rating,
+      id: this.monumentId.toLowerCase()
     });
   }
 
