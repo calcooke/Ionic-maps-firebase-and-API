@@ -10,6 +10,8 @@ import 'rxjs/add/operator/debounceTime';
 
 import { App } from 'ionic-angular';
 
+import { ToastController } from 'ionic-angular';
+
 
 
 
@@ -28,7 +30,7 @@ export class TypeFilterPage {
   monumentPopulated:boolean = false;
   typesToFilter: any = [];
 
-  constructor(public navCtrl: NavController,public appCtrl:App, public navParams: NavParams, public typeListProvider:TypeListDataProvider, public events:Events) {
+  constructor(public navCtrl: NavController,public appCtrl:App, public navParams: NavParams, public typeListProvider:TypeListDataProvider, public events:Events, public toastController: ToastController) {
     
     this.searchControl = new FormControl();
 
@@ -115,7 +117,7 @@ export class TypeFilterPage {
 
     console.log("should have popped");
     } else {
-      console.log("Nothing selected");
+      this.presentToast();
     }
 
     //this.navCtrl.popToRoot();
@@ -139,6 +141,14 @@ export class TypeFilterPage {
 
     // console.log("should have popped");
 
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Please select an item',
+      duration: 600
+    });
+    toast.present();
   }
 
 }
