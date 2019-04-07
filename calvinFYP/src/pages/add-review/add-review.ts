@@ -53,7 +53,8 @@ export class AddReviewPage {
       comment: this.addReviewForm.value.comment,
       rating: this.addReviewForm.value.rating,
       //userId: this.addReviewForm.value.userId
-      userId:this.auth.currentUserid
+      userId: this.auth.currentUserid,
+      date: Date.now()
     }
 
     //let id:any = this.navParams.data;
