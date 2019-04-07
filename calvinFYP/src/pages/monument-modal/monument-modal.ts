@@ -6,6 +6,7 @@ import { AddReviewPage } from '../add-review/add-review';
 import {MonumentReviewProvider} from '../../providers/monument-review/monument-review';
 import {AuthServiceProvider} from '../../providers/auth-service/auth-service';
 import {LoginPage} from '../login/login';
+import {EditReviewPage} from '../edit-review/edit-review';
 
 
 
@@ -105,5 +106,12 @@ export class MonumentModalPage {
     }
 
   };
+
+  public editReview(review){
+    this.navCtrl.push(EditReviewPage,{
+      comment: review.comment,
+      rating: review.rating
+    });
+  }
 
 }

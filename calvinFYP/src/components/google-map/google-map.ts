@@ -34,7 +34,9 @@ export class GoogleMapComponent {
   cardTitle: string;
   monumentsOnMap: any = []; 
   userLocation:any;
+  userCoords:any;
   filterActive: boolean = false;
+  
   
   
   constructor(public http: HttpClient, public platform:Platform, public archService:archDataService, public modalCtrl: ModalController, public events:Events, private geolocation:Geolocation) {
@@ -59,6 +61,11 @@ export class GoogleMapComponent {
     //  }, 1000);
 
     // });
+    let watch = this.geolocation.watchPosition({enableHighAccuracy: true});   
+      watch.subscribe((resp) => {                                               
+      
+      this.userCoords = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+      });
 
     
 
@@ -127,12 +134,13 @@ export class GoogleMapComponent {
     console.log('The platform is ready');
     //let coords = new google.maps.LatLng(52.35465106, -7.700976012);
     //setTimeout(function(){
-    let coords = new google.maps.LatLng(53.13639186, -9.280849169);
+    //let coords = new google.maps.LatLng(53.13639186, -9.280849169);
+    
     console.log('coords set');
     console.log('Setting map options');
     let mapOptions: google.maps.MapOptions = {
 
-      center: coords,
+      center: this.userCoords,
       zoom: 14,
       mapTypeId: google.maps.MapTypeId.TERRAIN,
       disableDefaultUI: true, 
@@ -179,16 +187,18 @@ export class GoogleMapComponent {
   addUserMarker(){
 
     //this.geolocation.getCurrentPosition({enableHighAccuracy: true}).then((resp) => {  //uncomment this line for working stationary position
-      let watch = this.geolocation.watchPosition({enableHighAccuracy: true});   //Delete this line
-      watch.subscribe((resp) => {                                               // and this line if watching position breaks
+
+
+      ///let watch = this.geolocation.watchPosition({enableHighAccuracy: true});   //Delete this line
+      //watch.subscribe((resp) => {                                               // and this line if watching position breaks
       // console.log(resp.coords.latitude);
       // console.log(resp.coords.longitude);
       // this.userLocation.lat = resp.coords.latitude;
       // this.userLocation.long = resp.coords.longitude;
-      let coords = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+      //let coords = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
 
         this.userLocation = new google.maps.Marker({
-          position: coords,
+          position: this.userCoords,
           icon: {
             path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
             scale: 5
@@ -199,7 +209,8 @@ export class GoogleMapComponent {
         
     //  }).catch((error) => {                                    //Uncomment these lines to get stationary position working
     //    console.log('Error getting location', error);        // getCurrentPosition is a promise so it needs these
-     });
+
+    // });
 
   }
 

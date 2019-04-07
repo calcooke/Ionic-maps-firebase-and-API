@@ -1,0 +1,38 @@
+
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Edit Review</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  <ion-content padding>
+  
+      <form [formGroup]="editReviewForm">
+  
+        <ion-label>
+              Comment:
+        </ion-label>
+  
+        <ion-item>
+            <ion-input type='text' formControlName='comment'></ion-input>
+        </ion-item>
+  
+        <ion-label>
+            Rating:
+        </ion-label>
+  
+        <ion-item>
+          <ion-input type='number' formControlName='rating'></ion-input>
+        </ion-item>
+  
+  
+      </form>
+  
+      <!-- <button ion-button block [disabled]="!editReviewForm.valid" (click)='editItem()'>Edit</button> -->
+      <button ion-button color="primary" (click)='showConfirmEdit()'>Save</button>
+    <button ion-button color="danger" (click)='showConfirmDelete()'>Delete</button>
+  
+  </ion-content>
+  

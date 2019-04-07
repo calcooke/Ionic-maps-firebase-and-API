@@ -38,6 +38,7 @@ import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import {LoginPage} from '../pages/login/login';
 import { MonumentReviewProvider } from '../providers/monument-review/monument-review';
+import {EditReviewPage} from '../pages/edit-review/edit-review';
 
 
 
@@ -73,7 +74,8 @@ var config = {
     ReviewedFilterPage,
     AddReviewPage,
     MapToIterable,
-    LoginPage
+    LoginPage,
+    EditReviewPage
   ],
   imports: [
     HttpClientModule,
@@ -97,7 +99,8 @@ var config = {
     FavouriteFilterPage,
     ReviewedFilterPage,
     AddReviewPage,
-    LoginPage
+    LoginPage,
+    EditReviewPage
     
   ],
   providers: [

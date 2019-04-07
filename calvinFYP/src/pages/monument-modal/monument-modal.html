@@ -24,21 +24,22 @@
     
     </ion-list> -->
 
-    <ion-card *ngFor="let comment of monumentReviews.reviews">
+    <ion-card *ngFor="let review of monumentReviews.reviews">
 
       <ion-card-header>
         <ion-icon name="contact"></ion-icon>
-        User id: {{comment.userId}}
-        <p>{{comment.date | date:'short'}}</p>
+        User id: {{review.userId}}
+        <p>{{review.date | date:'short'}}</p>
       </ion-card-header>
 
 
 
         <ion-card-content>
-              {{comment.comment}}
+              {{review.comment}}
               
         </ion-card-content>
-
+        <p *ngIf="review.userId == authSerivce.currentUserid">User Id matches</p>
+        <button ion-button *ngIf="review.userId == authSerivce.currentUserid" (click)="editReview(review)" >Edit</button>
       </ion-card>
 
     <ion-buttons>
