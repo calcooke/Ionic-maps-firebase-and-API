@@ -1,0 +1,38 @@
+
+<ion-content>
+
+    <ion-searchbar class="searchbar" [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+
+    <ion-list>
+        <!-- <ion-item>
+            {{testVariable}}
+        </ion-item> -->
+        <!-- <ion-icon name="checkmark" size="large" slot="primary"></ion-icon> -->
+        <!-- <ion-item *ngFor="let item of items" (click)="addTitleToFilter(item)">
+            {{item}}
+            
+        </ion-item> -->
+        
+            <!-- {{item}} -->
+            <!-- <ion-icon name="checkmark" size="large" slot="primary"></ion-icon> -->
+        
+
+    <ion-list>
+            <ion-item *ngFor="let item of items" >
+              <ion-label>{{item}}</ion-label>
+              <ion-checkbox slot="start" (click)="addTitleToFilter(item)"></ion-checkbox>
+            </ion-item>
+          </ion-list>
+
+    </ion-list>
+
+    <!-- <button ion-button full (click)="filterByType()" >Filter</button> -->
+
+</ion-content>
+
+<ion-footer no-shadow>
+        
+                <button ion-button full (click)="filterByType()" >Filter</button>
+
+        
+    </ion-footer>

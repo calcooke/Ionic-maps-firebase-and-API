@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>
+      Lithic
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="item-trns">
+
+  
+  <!-- <information-card></information-card> -->
+  <!-- <button ion-button (click)="locate()">Get location</button>
+  
+  <p>{{userLocation}}</p> -->
+  <!-- <button ion-button (click)="openFilter()">Get location</button>  -->
+  
+  <ion-icon class="searchIcon" name="search" (click)="openFilter()" ></ion-icon>
+  <!-- <ion-icon class="clearFilter" name="funnel" (click)="clearFilter()" ></ion-icon> -->
+  <button *ngIf="filterActive" ion-button class="clearFilter" name="funnel" (click)="clearFilter()">Clear Filter</button>
+  <google-map></google-map>
+  
+</ion-content>
+
