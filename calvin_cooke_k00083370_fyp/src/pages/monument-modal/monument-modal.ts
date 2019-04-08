@@ -39,42 +39,28 @@ export class MonumentModalPage {
     console.log(this.navParams.get('message'));
     this.monumentTitle = this.navParams.get('message');
     this.monumentId = this.navParams.get('id');
-    //this.archService.retrieveDescription(this.navParams.get('id'));
+
+    // Retrieving the description for the ArcGIS service
 
     this.archService.retrieveDescription(this.navParams.get('id')).subscribe(result => {
-      //console.log(result);
+
       this.monumentDescription = result.features[0].attributes.WEBNOTES;
-      })
 
+    })
 
+    // Getting all the monuments reviews from Firebase
 
-  this.reviewService.getReview(this.monumentId.toLowerCase())
-      .subscribe(docs => {
-       
-        if (docs.payload.exists)
-        {
-          this.monumentReviews= docs.payload.data();
-        }
-        // console.log("This is monumentReviews");
-        // console.log(this.monumentReviews);
-        // console.log("This is the rating");
-        //console.log(this.monumentReviews.comments['rating']);
+    this.reviewService.getReview(this.monumentId.toLowerCase())
+        .subscribe(docs => {
         
-        
+          if (docs.payload.exists)
+          {
+            this.monumentReviews= docs.payload.data();
+          }
     
-          // this.monumentReviews =  docs.map(item => {
-          //     return {
-          //       id:  item.payload.doc.id,
-          //       ...item.payload.doc.data()
-          //     };
-          // }); 
-          
-        
-      
       });    
 
   }
-
 
 
   public closeModal(){
@@ -85,10 +71,13 @@ export class MonumentModalPage {
 
   public addReview(){
 
+    // A user can only add a review if they are logged in.
+
     if(this.authSerivce.isLoggedIn == true){
 
       console.log('Opening the add review page and the Id being passed is');
       console.log(this.monumentId.toLowerCase());
+
       this.navCtrl.push(AddReviewPage,{
         
         id: this.monumentId.toLowerCase()
@@ -96,6 +85,8 @@ export class MonumentModalPage {
       });
 
     } else {
+
+      // If a user isn't logged in - bring them to the login page
 
       this.navCtrl.push(LoginPage,{
         
@@ -107,12 +98,19 @@ export class MonumentModalPage {
 
   };
 
+  // Creating an object from the current user's review.
+  // The edit button will only appear on a review that matches
+  // the current user's Id, as it is binded 
+  // in the html with with *ngIf="review.userId == authSerivce.currentUserid"
+
   public editReview(review ){
+
     this.navCtrl.push(EditReviewPage,{
       comment: review.comment,
       rating: review.rating,
       id: this.monumentId.toLowerCase()
     });
+
   }
 
 }

@@ -16,89 +16,72 @@ declare var google: any;
 })
 export class HomePage {
 
-  //items;
+  
   userLocation: any;
   filterActive: boolean = false;
 
   constructor(public navCtrl: NavController,public navParams: NavParams, public platform: Platform, public afd: AngularFireDatabase, public modalCtrl: ModalController, public events:Events) {
 
     
-    this.getDataFromFirebase();
-    console.log("HOW OFTEN DOES A CONSTRUCTOR LOAD?");
+    //this.getDataFromFirebase();
+
+    // Listening out for an event notifying that the monument
+    // filter is now ACTIVE to toggle the visibility
+    // of the "clear filter" icon
 
     events.subscribe('filter:active', (types)=>{
       
       this.filterActive = true;
       console.log("filterActive boolean is ", this.filterActive);
-      
-      
+        
     });
 
+    // Listening out for an event notifying that the monument
+    // filter is now INACTIVE to toggle the visibility
+    // of the "clear filter" icon
 
     events.subscribe('filter:inactive', (types)=>{
       
       this.filterActive = false;
       console.log("filterActive boolean is ", this.filterActive);
-     
       
     });
-    //this.locate();
-
-    // this.platform.ready().then(()=>{
-
-    //   //set options.. 
-    //   var options = {
-    //              timeout: 2000 //sorry I use this much milliseconds
-    //          }
-    //   //use the geolocation 
-    //   this.geolocation.getCurrentPosition(options).then(data=>{
-    //     console.log( data.coords.longitude);
-    //     console.log(data.coords.latitude);
-    //    }).catch((err)=>{
-    //        console.log("Error", err);
-    //      });
-    //   });
+    
 
   }
 
   ionViewDidLoad() {
 
-    console.log(this.navParams.data);
-    console.log("HOW OFTEN DOES IONVIEW DID LOAD LOAD?");
-
-    //WORKING LOCATION CODE
-
-    // this.geolocation.getCurrentPosition().then((resp) => {
-    //   console.log(resp.coords.latitude);
-    //   console.log(resp.coords.longitude);
-    //  }).catch((error) => {
-    //    console.log('Error getting location', error);
-    //  });
-    
+ 
   }
 
   public openFilter(){
 
-    console.log('working');
+    console.log('Opening the filter menu page');
 
     this.navCtrl.push(FilterMenuPage);
 
   }
 
+  // I believe this open modal function is no longer used.
+
   public openModal(){
 
-    //console.log('Modal open');
     var modalPage = this.modalCtrl.create('ModalPage'); 
-    //console.log('Presenting modal');
+    
     modalPage.present();
 
   }
 
   public clearFilter(){
-    //console.log('CLEAR FILTER');
+    
+    // Publishing an event to notify that the clear filter button has been pressed
     this.events.publish('clear:filters');
-    //this.filterActive = false;
+    
   }
+
+  // This function was used to get data from FireBase's "Real time database".
+  // I have since moved on to FireStore.
 
   getDataFromFirebase(){
 
@@ -113,21 +96,6 @@ export class HomePage {
 
   }
 
-  getLocation(){
-
-    console.log('LOCATION CALLED');
-
-    //return this.geolocation.getCurrentPosition();
-
-    // this.geolocation.getCurrentPosition().then((resp) => {
-    //   // resp.coords.latitude
-    //   // resp.coords.longitude
-    //   console.log(resp);
-    //   this.userLocation = resp.coords.latitude;
-    //  }).catch((error) => {
-    //    console.log('Error getting location', error);
-    //  });
-
-  }
+  
 
 }

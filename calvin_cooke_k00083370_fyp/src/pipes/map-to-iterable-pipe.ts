@@ -14,3 +14,6 @@ export class MapToIterable implements PipeTransform {
   }
 }
 
+
+// Tried and failed to implement a custom pipe to solve an observable problem.
+

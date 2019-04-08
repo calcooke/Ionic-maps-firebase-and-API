@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -15,6 +15,8 @@ export class archDataService{
     }
 
     getData():Observable<any>{
+
+        console.log("Retrieving monuments from JSON file");
  
         let url = 'assets/archData.json'; 
 
@@ -26,9 +28,9 @@ export class archDataService{
 
     retrieveDescription(id):Observable<any>{
 
-        let obs = this.http.get(`http://webservices.npws.ie/arcgis/rest/services/NM/NationalMonuments/MapServer/0/query?where=entity_id%3D%27${id}%27&outFields=webnotes&f=pjson`)
+        console.log("Retrieving monument description from ArcGIS service");
 
-        //obs.subscribe((response) => console.log(response));
+        let obs = this.http.get(`http://webservices.npws.ie/arcgis/rest/services/NM/NationalMonuments/MapServer/0/query?where=entity_id%3D%27${id}%27&outFields=webnotes&f=pjson`)
 
         return obs;
 

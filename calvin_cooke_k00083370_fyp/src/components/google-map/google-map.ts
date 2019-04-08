@@ -2,17 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import {archDataService} from '../../archData.service';
 import { HttpClient } from '@angular/common/http';
 import { ElementRef } from '@angular/core';
-
-
-
 import {ModalController} from 'ionic-angular';
-
 import {Events} from 'ionic-angular';
-
 import { Geolocation } from '@ionic-native/geolocation';
 import {Platform} from 'ionic-angular';
-
-
 
 declare var google: any;
 
@@ -27,7 +20,6 @@ export class GoogleMapComponent {
   public clickedOn:boolean = false;
   
   @ViewChild("map") mapElement: ElementRef;
-  //@ViewChild("map") mapElement;
   map: any;
   monumentMarker: any;
   google:any;
@@ -44,7 +36,6 @@ export class GoogleMapComponent {
     events.subscribe('filter:type', (types)=>{
       
       this.filterByType(types);
-      //this.events.publish('items:selected');
       
     });
 
@@ -54,13 +45,8 @@ export class GoogleMapComponent {
       
     });
 
-    // platform.ready().then(()=> {
+    console.log("Retrieving and tracking user location");
 
-    //   setTimeout(() => {
-    //     this.initMap();
-    //  }, 1000);
-
-    // });
     let watch = this.geolocation.watchPosition({enableHighAccuracy: true});   
       watch.subscribe((resp) => {                                               
       
@@ -72,11 +58,8 @@ export class GoogleMapComponent {
   }
   ngOnInit(){
 
-    //this.events.publish('filter:inactive');
-
-    console.log('ng OnInit did in fact init');
     this.cardTitle = 'New card text';
-    console.log('Calling Init map');
+    console.log('Initialising map');
     setTimeout(() => {
        this.initMap();
     }, 1000);
@@ -89,10 +72,10 @@ export class GoogleMapComponent {
   
   public openModal(monumenttitle:any, monumentId ){
 
-    console.log("I call openModal() to open the modal page and pass the title and id");
+    console.log("I call openModal() to open a modal page and pass the title and id");
     var data = {message: monumenttitle,
                 id: monumentId}; 
-    console.log("title and id are put into a data object");           
+    console.log("Monument title and id are put into a data object");           
     var modalPage = this.modalCtrl.create('MonumentModalPage', data); 
     console.log("The modal page is created with the info"); 
     modalPage.present();
@@ -103,7 +86,8 @@ export class GoogleMapComponent {
 
 
   retrieveMonuments(){
-  
+
+      console.log("Retrieving monuments from database");
       this.archService.getData().subscribe(result => {
           this.monuments = result;
       })
@@ -112,17 +96,9 @@ export class GoogleMapComponent {
 
 
   ionViewDidLoad(){
-    console.log('IonView did in fact load');
-    //this.retrieveMonuments();
-    //Will this sort the google map issues?
-    //this.initMap();
-    //this.platform.ready().then(()=> {
 
-    //   setTimeout(() => {
-    //     this.initMap();
-    //  }, 1000);
-
-    //});
+    console.log('Map view loaded');
+    
   }
 
   initMap(){
@@ -132,12 +108,8 @@ export class GoogleMapComponent {
     this.platform.ready().then(()=> {  
     
     console.log('The platform is ready');
-    //let coords = new google.maps.LatLng(52.35465106, -7.700976012);
-    //setTimeout(function(){
-    //let coords = new google.maps.LatLng(53.13639186, -9.280849169);
     
-    console.log('coords set');
-    console.log('Setting map options');
+    console.log('Setting up map with map options');
     let mapOptions: google.maps.MapOptions = {
 
       center: this.userCoords,
@@ -149,15 +121,16 @@ export class GoogleMapComponent {
 
     console.log('Assigning map options to map');  
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    //console.log('Populating map with markers');  
+    console.log('Populating map with monument markers');  
     this.addMarker(this.monuments);
 
-  //}, 1000 );
 
 
 })
 
   }
+
+  // Placing a marker on the map with the coordinates of each monument
 
   addMarker(monuments){
 
@@ -178,24 +151,17 @@ export class GoogleMapComponent {
       });
 
       this.monumentsOnMap.push(this.monumentMarker);
+
+      console.log("Monument markers displayed on map, placing user loaction icon on map");
       
       this.addUserMarker();
     };
 
   }
 
+  // Adding the user icon at the user's location
+
   addUserMarker(){
-
-    //this.geolocation.getCurrentPosition({enableHighAccuracy: true}).then((resp) => {  //uncomment this line for working stationary position
-
-
-      ///let watch = this.geolocation.watchPosition({enableHighAccuracy: true});   //Delete this line
-      //watch.subscribe((resp) => {                                               // and this line if watching position breaks
-      // console.log(resp.coords.latitude);
-      // console.log(resp.coords.longitude);
-      // this.userLocation.lat = resp.coords.latitude;
-      // this.userLocation.long = resp.coords.longitude;
-      //let coords = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
 
         this.userLocation = new google.maps.Marker({
           position: this.userCoords,
@@ -207,77 +173,40 @@ export class GoogleMapComponent {
 
         });
         
-    //  }).catch((error) => {                                    //Uncomment these lines to get stationary position working
-    //    console.log('Error getting location', error);        // getCurrentPosition is a promise so it needs these
-
-    // });
-
+  
   }
+
+
+  // This function was for testing purposes
 
   monumentDetail(title){
+
     console.log("Clicking on a marker works");
     
-    
-
     this.clickedOn = true;
   }
+
+  // Filter by setting the visibility of each monument in relation to what
+  // monuments were selected in the filter menu list
 
   filterByType(selected){
 
     
-    //console.log('Before removing');
+      console.log("Array of selected items is: ", selected);
 
-    //let tempArray = this.monumentsOnMap.filter(item => selected.indexOf(item) === -1);
-
-    
-
-    //   return selected.indexOf(item) === -1;
-      
-    // });
-    // console.log('After removing');
-    // console.log(tempArray);
-
-    // tempArray.filter(function(item){
-    //   return selected.indexOf(item) === -1;
-      
-    // });
-
-    //console.log(tempArray);
-
-    //for(let i=0; i < this.monumentsOnMap.length; i++){
-
-      console.log(selected);
-
-    //   for(let j = 0; j < selected.length; j++){
-
-    //     for(let i=0; i < this.monumentsOnMap.length; i++){
-
-    //         if(this.monumentsOnMap[i]["l"].title != selected[j]){
-
-    //           console.log('match');
-              
-    //           this.monumentsOnMap[i]["l"].setVisible(false);
-            
-      
-    //         }
-
-    //     }
-    // }
+ 
 
     for (let i = 0; i < this.monumentsOnMap.length; i++)
       {
-        // let's assume we are not going to find this monument in the selected array
+        
         let found = false;
 
-        // now let's loop through the selected list
+        // Loop through the selected items
         for (let j = 0; j < selected.length; j++)
         {
           if (this.monumentsOnMap[i]['l'].title == selected[j])
           {
-              // Ok, this monument has been selected, so we are going to keep it
-              // visible. Let's break out of the containing loop i.e. looping through
-              // the selected array, as it is pointless continuing the search as we 
-              // we have found a match
+              //Match found, break and loop again.
               found = true;
               break;
          }
@@ -289,17 +218,24 @@ export class GoogleMapComponent {
         }
       }
 
-    
-
   }
 
+  // Resetting the visibility of all markers
+
   clearFilter(){
+
+    console.log("Resetting the visibility of all markers");
 
     for(let i=0; i < this.monumentsOnMap.length; i++){
 
       this.monumentsOnMap[i]["l"].setVisible(true);
       
     }
+
+    console.log("Publishing an event notifying that the filter has been reset and is now inactive")
+
+    // The home.ts page listens out for this evn so it sets the visibility of the clear
+    // filter icon back to false
 
     this.events.publish('filter:inactive');
 

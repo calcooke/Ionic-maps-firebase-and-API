@@ -16,7 +16,9 @@ export class TypeListDataProvider {
   
     constructor(public http: Http, private archService:archDataService, public events:Events) {
 
- 
+      //Creating an array of all monument retrieved from the database
+      // and removing the duplicates for displaying in the filter lists.
+
       this.archService.getData().subscribe(result => {
                 
         let tempArray=[];
@@ -39,8 +41,7 @@ export class TypeListDataProvider {
 
         this.items = unique_array;
         let notice = "Array assigned";
-        //console.log('Monument titles stored in array with no duplicates');
-        //console.log(this.items);
+      
         this.events.publish('monuments:retrieved', notice);
       
     };
@@ -48,8 +49,20 @@ export class TypeListDataProvider {
     
     filterItems(searchTerm){
 
-      this.monumentPopulated = true;
+      // the "search term" being passed in refers to
+      // the value in the input field of the list of 
+      // monument types to filter by.
 
+      //It works by returning an array of items only with the
+      // value of the input field within it.
+
+      // For example, if the input field is blank ' '
+      // The entire array is returned and displayed in the list.
+
+      // If the user types in "Cas", it will only return items of the array that include
+      // the term - such as "Castle"
+
+      this.monumentPopulated = true;
 
       let notice ="button pressed";
       this.events.publish('button:pressed', notice);

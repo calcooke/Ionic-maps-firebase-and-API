@@ -37,14 +37,17 @@ export class TypeFilterPage {
     events.subscribe('monuments:retrieved', (notice)=>{
       //This is to ensure that set filtered items is only called once the 
       // service has actually retrieved, stored and sorted the monument data.
+      //It listenes out for the event that announces when it has happened.
+
       this.setFilteredItems();
       
       
     });
 
+    
     events.subscribe('button:pressed', (notice)=>{
-      //this.setFilteredItems();
-      //console.log('Second event heard');
+
+      // This was an event for testing
       
     });
 
@@ -55,8 +58,7 @@ export class TypeFilterPage {
 
     console.log(this.typeListProvider.items);
 
-    // console.log('Boolean is');
-    // console.log(this.monumentPopulated);
+
 
     if(this.typeListProvider.monumentPopulated == true){
 
@@ -71,6 +73,11 @@ export class TypeFilterPage {
     });
 
  
+    // This listens out for any value changes in the search bar
+    // wait for 700ms and then calls the set filter items
+    // to filter the list of items by the value currently in the
+    // input field.
+
     this.searchControl.valueChanges.debounceTime(700).subscribe(search =>{
 
       this.setFilteredItems();
@@ -81,10 +88,13 @@ export class TypeFilterPage {
 
   setFilteredItems(){
 
-    //console.log('Setting boolean to TRUE');
     this.monumentPopulated = true;
-    //console.log(this.monumentPopulated);
-    //console.log('Setting boolean to TRUE');
+    
+    //Items is an array being returned from the typeList provider.
+    // the array is filtered based on whatever the user has typed into
+    // the input field. Such as if the user types in "ra", the list will
+    // be populated by items which include that such as "rath"
+
     this.items = this.typeListProvider.filterItems(this.searchTerm);
     this.items.sort();
 
@@ -92,22 +102,28 @@ export class TypeFilterPage {
 
   addTitleToFilter(title){
 
-  //   if (!this.typesToFilter.some((item) => item == title)) {
-  //     this.typesToFilter.push(title);
-  // }
+  // Once you click on an list item, add it to an array
+  // so we know what to filter  the monuments by.
+ 
   if (!this.typesToFilter.includes(title)) {
+
     this.typesToFilter.push(title);
+
   } else {
+
     let i = this.typesToFilter.indexOf(title);
     console.log("Index is ", i);
     this.typesToFilter.splice(i,1);
   }
 
-    // this.typesToFilter.push(title);
      console.log(this.typesToFilter);
   }
 
   filterByType(){
+
+    //This function will only work if the array of
+    // items to filter is greater than one, as in
+    // if the user has selected an item first.
 
     if(this.typesToFilter.length > 0){
     //This event alerts google.map.ts to set the visible value on the filtered markers
@@ -115,33 +131,13 @@ export class TypeFilterPage {
     this.events.publish('filter:active'); 
     this.appCtrl.getRootNav().pop();
 
-    console.log("should have popped");
     } else {
       this.presentToast();
     }
 
-    //this.navCtrl.popToRoot();
-    //this.navCtrl.pop();
-    //this.navCtrl.popTo(HomePage);
-    //this.app.rootPage.popToRoot();
-    //this.navCtrl.first();
-    //this.navCtrl.setRoot(HomePage)
-    //this.navCtrl.parent.popTo(HomePage);
-
-    //The solution
-    // this.navCtrl.setRoot(HomePage);
-    //this.navCtrl.popToRoot();
-    //this.navCtrl.pop();
-
-    //this.events.publish('items:selected');  --works
-
-
-    // this.events.publish('filter:active'); 
-    // this.appCtrl.getRootNav().pop();
-
-    // console.log("should have popped");
-
   }
+
+  //Alerting the user to select an item before filtering
 
   async presentToast() {
     const toast = await this.toastController.create({

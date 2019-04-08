@@ -5,12 +5,14 @@ import {MonumentReviewProvider} from '../../providers/monument-review/monument-r
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { AlertController } from 'ionic-angular';
 
-/**
- * Generated class for the EditReviewPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
+  //This functions on this page are very much the same
+  // as the add review page.
+
+  //The only real difference is that the form fields
+  // are being populated with the review data which is
+  // taken from the comment list item in the monument modal
+
 
 @IonicPage()
 @Component({

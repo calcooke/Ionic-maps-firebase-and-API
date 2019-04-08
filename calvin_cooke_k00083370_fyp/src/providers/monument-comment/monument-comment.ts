@@ -6,11 +6,18 @@ import { AngularFirestore} from 'angularfire2/firestore';
 import * as firebase from 'firebase/app';
 
 
+
+  //THIS IS AN OLD SERVICE CURRENTLY NOT IN USE
+  // IT HAS BEEN DUPLICATED AND RENAMED TO MONUMENT-REVIEW SERVICE.
+  // LEAVING IT HERE IN CASE DELETING IT BREAKS MY CODE 
+  // JUST BEFORE HANDING IT UP
+
+
+
 @Injectable()
 export class MonumentCommentProvider {
 
-  // "rxjs": "^6.4.0",
-  //   "rxjs-compat": "^6.4.0",
+  
 
   constructor(public http: HttpClient,  public monumentsDb:AngularFirestore) {
     console.log('Monument review service injected');

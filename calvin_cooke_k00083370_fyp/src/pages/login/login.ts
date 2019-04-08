@@ -34,7 +34,7 @@ export class LoginPage {
         });
 		
 		
-		//passing the player details along in the nav params
+		//passing the User details along in the nav params
         this.paramData = navParams.data;
         console.log('the monument ID passed in NavParams to Login page is:');
         console.log(navParams.data.id);
@@ -56,8 +56,9 @@ export class LoginPage {
 		};
 
 		//Pass the detail to auth-service.ts. If it returns true, navigate to
-		// the edit player page with the data, which are the details of the player
-    // to edit retrieved from the list item
+		// the add review page the data, which are the details of the monument
+		// to edit retrieved from the modal
+		
     console.log("Passing the login details to auth service");
 
 		this.auth.signInWithEmail(credentials)
