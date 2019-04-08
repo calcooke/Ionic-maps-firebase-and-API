@@ -104,7 +104,24 @@ export class MonumentReviewProvider {
     //this.monumentsDb.doc("monuments/"+id).update(review);
   }
 
-  reviewToArray(monumentId, currentUserId){
+  convertReviewToArray(monumentId, currentUserId){
+
+    //I had lots of attempts to try delete a review.
+
+    // Plan A was to query using FireStore's array-contains feature.
+    // Unfortunately this is impossible as shown in https://stackoverflow.com/questions/54600915/firestore-how-to-query-data-from-a-map-of-an-array
+
+    // Plan B was to:
+    // a) return the specific monument's reviews field as an array.
+    // b) loop through the array and check if element.userId matches current userId
+    // c) use that element as the index to splice.
+
+    // I could return the entire collection of monuments as an array - but not
+    // a specific monument's reviews a an array.
+    // The collection could potentially be 15000 in length so this is not practical to be
+    // downloading, looping around and storing again.
+
+    
 
     console.log("Delete the review in ", monumentId, "where the user id is ", currentUserId);
 
@@ -138,6 +155,8 @@ export class MonumentReviewProvider {
 
 
   retrieveReview(monumentId, currentUserId){
+
+
 
     console.log("Delete the review in ", monumentId, "where the user id is ", currentUserId);
     // return this.monumentsDb.collection("monuments").doc('reviews').snapshotChanges();

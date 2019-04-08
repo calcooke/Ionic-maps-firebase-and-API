@@ -95,7 +95,7 @@ export class EditReviewPage {
         {
           text: 'Delete',
           handler: () => {
-            this.reviewService.reviewToArray(this.navParams.data.id, this.auth.currentUserid);
+            this.reviewService.convertReviewToArray(this.navParams.data.id, this.auth.currentUserid);
             this.navCtrl.popToRoot();
           }
         }
