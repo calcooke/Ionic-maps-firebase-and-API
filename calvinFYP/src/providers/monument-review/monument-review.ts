@@ -104,10 +104,93 @@ export class MonumentReviewProvider {
     //this.monumentsDb.doc("monuments/"+id).update(review);
   }
 
-  deleteReview(monumentId, currentUserId){
+  reviewToArray(monumentId, currentUserId){
+
     console.log("Delete the review in ", monumentId, "where the user id is ", currentUserId);
+
+    // let reviewsArray  = [];
+
+    // this.retrieveReview(monumentId, currentUserId).subscribe(docs => {
+    //   reviewsArray =  docs.map(item => {
+        
+    //       return {
+    //         id:  item.payload.doc.id,
+    //         ...item.payload.doc.data()
+    //       };
+    //   }); 
+    // });
+
+    // this.deleteReview(reviewsArray)
+  
+  }
+
+
+  deleteReview(reviewsArray){
+
+
+    for(let i = 0; i < reviewsArray.length; i++){
+
+      console.log(reviewsArray[i]);
+      
+    }
+
+  }
+
+
+  retrieveReview(monumentId, currentUserId){
+
+    console.log("Delete the review in ", monumentId, "where the user id is ", currentUserId);
+    // return this.monumentsDb.collection("monuments").doc('reviews').snapshotChanges();
+    //console.log(this.monumentsDb.collection("monuments").snapshotChanges());
+    //return this.monumentsDb.collection("monuments").doc(monumentId).snapshotChanges().toPromise().
+    //return this.monumentsDb.collection("monuments").snapshotChanges();
+    
     //this.monumentsDb.doc("monuments/"+monumentId).collection('reviews')
-    console.log(this.monumentsDb.doc("monuments/"+monumentId).collection('reviews'));
+    //console.log(this.monumentsDb.doc("monuments/"+monumentId).collection('reviews'));
+    //const col = this.monumentsDb.collection('monuments/' + monumentId, ref => ref.where('userId', '==', currentUserId));
+    //const query = col.where('reviews', 'array-contains', 'userId');
+
+    // let reviewsDb = [];
+
+    // let fieldValues;
+
+    // this.monumentsDb.collection("monuments").doc(monumentId).ref.get().then((querySnapshot) => {
+    //     fieldValues = querySnapshot.
+    //   }
+
+    // this.monumentsDb.collection("monuments").ref.get().then((querySnapshot) => {
+    //   fieldValues = querySnapshot.docs.map(doc => doc.data());
+    // }
+
+    //   let fieldValues = this.monumentsDb.collection("monuments").doc(monumentId).get()
+    // .then(querySnapshot => {
+    //   fieldValues = querySnapshot.docs.map(doc => doc.data())
+    // })
+
+    //const col = this.monumentsDb.collection("monuments").doc(monumentId);
+    // let query = this.monumentsDb.collection("monuments").doc(monumentId);
+    // console.log(query.reviews);
+
+      // reviews:firebase.firestore.FieldValue.arrayRemove() 
+      
+    //     filter(reviews => reviews.userId !== currentUserId)
+    //   })
+    //  .catch(function(error) {
+    //      console.error("Error removing document: ", error);
+    //  });
+      // reviewsDb =  col.subscribe().map(item => {
+        
+    //   return {
+    //     id:  item.payload.doc.id,
+    //     ...item.payload.doc.data()
+    //   };
+    // });    
+
+// Remove the 'capital' field from the document
+  // col.update({
+  //   reviews: firebase.firestore.FieldValue.arrayRemove
+  // });
+    //console.log(col);    
   }
 
 }
